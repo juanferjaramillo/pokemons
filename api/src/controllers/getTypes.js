@@ -7,10 +7,10 @@
 //consult if the database has info about Types and if it does, gets the data from database, it the database is empty, get the data from the API:
 
 const { Type } = require("../db.js");
-
 const axios = require("axios");
 
 const getTypes = async (req, res) => {
+  console.log(`served by getTypes`);
   try {
     //1. checks that the db table types is empty
     const typeRegs = await Type.count();

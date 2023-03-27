@@ -6,16 +6,33 @@ const { Pokemon } = require("../db.js");
 const axios = require("axios");
 
 const getPokemons = async (req, res) => {
-  //check for query received
+  console.log(`served by getPokemons`);
+  //check if query received contains a name
   const pokName = req.query.name;
+  let pokNext = req.body.next;  //url for next page of pokemons
+  console.log(pokNext);
+  if (pokNext === undefined) {pokNext = 'https://pokeapi.co/api/v2/pokemon/'};
+  //if no next page received, it is the first fetch, get the first page.
+  // if (Number(pokNext.slice(41,45)) === 1280) {pokNext = 'https://pokeapi.co/api/v2/pokemon/?offset=1280&limit=1'}
+  // //reached the last page, stay there.
+  let myPok = [];
 
   if (pokName === undefined) {
-    //did not received query, return all pokemons
+    //did not received query, return all pokemons from API
+    try {
+      //fetch the first 20 pokemons:
+      myPok = await axios(pokNext);
+      myPok = myPok.data.results; //myPok is an array of pokemons
+      return res.status(200).json(myPok);
+    } catch (error) {
+      return res.status(404).json(error.message);
+    }
+    //
   } else {
     //return the pokemon received by query:
     try {
       //search in database:
-      let myPok = await Pokemon.findAll({
+      myPok = await Pokemon.findAll({
         //myPok es un array con pokemones
         where: {
           nombre: pokName,
@@ -27,21 +44,22 @@ const getPokemons = async (req, res) => {
         myPok = await axios(`https://pokeapi.co/api/v2/pokemon/${pokName}`);
         myPok = myPok.data;
         //Store the pokemon in db:
-        await Pokemon.create({
-          id: myPok.id,
-          nombre: myPok.name,
-          altura: myPok.height,
-          peso: myPok.weight,
-          imagen: myPok.sprites.front_default,
-          //vida:
-          //ataque:
-          //defensa:
-          //velocidad:
-        });
+        // await Pokemon.create({
+        //   id: myPok.id,
+        //   nombre: myPok.name,
+        //   altura: myPok.height,
+        //   peso: myPok.weight,
+        //   imagen: myPok.sprites.front_default,
+        //   //vida:
+        //   //ataque:
+        //   //defensa:
+        //   //velocidad:
+        // });
       }
-      res.status(200).json(myPok);
+      //finally, return the pokemon
+      return res.status(200).json(myPok);
     } catch (error) {
-      res.status(404).json(error.message);
+      return res.status(404).json(error.message);
     }
   }
 };
