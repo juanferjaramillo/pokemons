@@ -1,0 +1,16 @@
+index.js
+conecta la bd y luego levanta el server 
+
+db.js
+define la conexion a la bd
+crea las entidades (tablas) a partir de los modelos 
+(ejecuta los modelos para definirlos dentro de la base de datos)
+define las relaciones de las entidades
+
+app.js
+define el server
+aplica middlewares incluido el de routes
+
+Controllers de rutas:
+interactúan con la API pokemon (axios)
+interactuan con la database (sequelize)
