@@ -1,0 +1,62 @@
+.divAction {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    min-height: 6vh;
+    border-color: lightgray;
+    border-style: solid;
+}
+
+.divFilter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 30%;
+
+}
+
+.divOrder {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 30%;
+    border-style: solid;
+    border-color: lightgray;
+}
+
+.divSearch {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 29%;
+
+}
+
+.buttonFilterName {
+    border-radius: 30%;
+    width: 30%;
+    height: 70%;
+    border-color: darkgrey;
+    background-color: gray;
+}
+
+.buttonFilterAttack {
+    border-radius: 30%;
+    width: 30%;
+    height: 70%;
+    border-color: darkgrey;
+    background-color: gray;
+}
+
+.inputSarch {
+    border-radius: 10%;
+    background-color: lightgray;
+    width: 50%;
+}
+
+.buttonGo {
+    background-color: gray;
+    width: 10%;
+    border-radius: 10%;
+
+}

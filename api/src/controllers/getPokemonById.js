@@ -16,6 +16,7 @@ const getPokemonById = async (req, res) => {
     //2-Check that the Pokemon is found in database:
     if (myPok == null) {
       //3-the Pokemon was not found on database, retrieve it from API:
+      console.log("pokemon retrieved from API");
       myPok = await axios(`https://pokeapi.co/api/v2/pokemon/${pokId}`);
       myPok = myPok.data;
 
@@ -31,7 +32,7 @@ const getPokemonById = async (req, res) => {
         weight: myPok.weight,
         types: myPok.types.map((type) => type.type.name),
       };
-    }
+    }else {console.log("pokemon retrieved from database");}
     res.status(200).json(myPok);
   } catch (error) {
     res.status(404).json(`error getPokemonById: ${error.message}`);

@@ -1,0 +1,49 @@
+.divCard {
+    display: flex;
+    border-radius: 10%;
+    border-style: solid;
+    border-color: blue;
+    max-width: 22vw;
+    max-height: 12vw;
+    margin: 0.2vw;
+}
+
+.divInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 40%;
+}
+
+.divImg {
+    display: flex;
+    /* background-color: red; */
+    background-color: var(--random-color);
+    width: 60%;
+    border-top-right-radius: 10%;
+    border-bottom-right-radius: 10%;
+    justify-content: center;
+    align-items: center;
+}
+
+.divName {
+    border-radius: 35%;
+    /* background-color: blue; */
+    background-color: var(--random-color);
+    color: black;
+    font-size: 2vw;
+    border-style: solid;
+    border-color: gray;
+    width: 90%;
+}
+.divType {
+    border-radius: 15%;
+    border-style: solid;
+    border-color: darkgray;
+    width: 80%
+}
+
+.imgPokemon {
+    width: 100%;
+}

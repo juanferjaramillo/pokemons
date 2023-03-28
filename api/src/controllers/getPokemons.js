@@ -11,12 +11,6 @@ const getPokemons = async (req, res) => {
   //check if query received contains a name
   const pokName = req.query.name;
   const pokPage = req.query.page;
-  //let pokNext = req.body.next;  //url for next page of pokemons
-  //
-  //if (pokNext === undefined) {pokNext = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=12'};
-  //if no next page received, it is the first fetch, get the first page from API.
-  // if (Number(pokNext.slice(41,45)) === 1280) {pokNext = 'https://pokeapi.co/api/v2/pokemon/?offset=1280&limit=1'}
-  // //reached the last page, stay there.
   //
   let myPoks = [];
   if (pokName === undefined) {
@@ -66,6 +60,7 @@ const getPokemons = async (req, res) => {
       myPok = myPok[0];
       //if not found in database, fetch from API:
       if (myPok === undefined) {
+        console.log('pokemon retrieved fron the API');
         myPok = await axios(`https://pokeapi.co/api/v2/pokemon/${pokName}`);
         myPok = myPok.data;
         myPok = {
@@ -80,7 +75,7 @@ const getPokemons = async (req, res) => {
           weight: myPok.weight,
           types: myPok.types.map((type) => type.type.name),
         };
-      }
+      }else{console.log('pokemon retrieved fron database');}
       //finally, return the pokemon
       return res.status(200).json(myPok);
     } catch (error) {
