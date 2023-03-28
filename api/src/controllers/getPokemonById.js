@@ -18,17 +18,19 @@ const getPokemonById = async (req, res) => {
       //3-the Pokemon was not found on database, retrieve it from API:
       myPok = await axios(`https://pokeapi.co/api/v2/pokemon/${pokId}`);
       myPok = myPok.data;
-      // await Pokemon.create({
-      //   id: myPok.id,
-      //   nombre: myPok.name,
-      //   altura: myPok.height,
-      //   peso: myPok.weight,
-      //   imagen: myPok.sprites.front_default,
-      //   //vida:
-      //   //ataque:
-      //   //defensa:
-      //   //velocidad:
-      // });
+
+      myPok = {
+        id: myPok.id,
+        name: myPok.forms[0].name,
+        image: myPok.sprites.other.home.front_default,
+        life: myPok.stats[0].base_stat,
+        attack: myPok.stats[1].base_stat,
+        defense: myPok.stats[2].base_stat,
+        speed: myPok.stats[5].base_stat,
+        height: myPok.height,
+        weight: myPok.weight,
+        types: myPok.types.map((type) => type.type.name),
+      };
     }
     res.status(200).json(myPok);
   } catch (error) {

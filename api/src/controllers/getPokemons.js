@@ -4,38 +4,63 @@
 //con su información.
 const { Pokemon } = require("../db.js");
 const axios = require("axios");
-
+//
+//either receives a name (for details) or a page number by query (for many pokemons)
 const getPokemons = async (req, res) => {
   console.log(`served by getPokemons`);
   //check if query received contains a name
   const pokName = req.query.name;
-  let pokNext = req.body.next;  //url for next page of pokemons
-  console.log(pokNext);
-  if (pokNext === undefined) {pokNext = 'https://pokeapi.co/api/v2/pokemon/'};
-  //if no next page received, it is the first fetch, get the first page.
+  const pokPage = req.query.page;
+  //let pokNext = req.body.next;  //url for next page of pokemons
+  //
+  //if (pokNext === undefined) {pokNext = 'https://pokeapi.co/api/v2/pokemon/?offset=0&limit=12'};
+  //if no next page received, it is the first fetch, get the first page from API.
   // if (Number(pokNext.slice(41,45)) === 1280) {pokNext = 'https://pokeapi.co/api/v2/pokemon/?offset=1280&limit=1'}
   // //reached the last page, stay there.
-  let myPok = [];
-
+  //
+  let myPoks = [];
   if (pokName === undefined) {
-    //did not received query, return all pokemons from API
+    //-----------------------------------------did not received name by query,
+    //---------------------------------return all pokemons from API and db (at the end)
     try {
-      //fetch the first 20 pokemons:
-      myPok = await axios(pokNext);
-      myPok = myPok.data.results; //myPok is an array of pokemons
-      return res.status(200).json(myPok);
+      //fetch in groups of 12 pokemons, starting by id=12*page-11:
+      ///////////////////////////////////////////////////////////////////////////////
+      //verify that the page is 84, then returns only 2 more from API and
+      //start retrieving from db
+      ///////////////////////////////////////////////////////////////////////////////
+      for (i = 12 * pokPage - 11; i <= 12 * pokPage; i++) {
+        //returns array of 12 pokemons
+        pokNext = `https://pokeapi.co/api/v2/pokemon/${i}`;
+        let myPok = await axios(pokNext);
+        myPok = myPok.data;
+        myPok = {
+          id: myPok.id,
+          name: myPok.forms[0].name,
+          image: myPok.sprites.other.home.front_default,
+          life: myPok.stats[0].base_stat,
+          attack: myPok.stats[1].base_stat,
+          defense: myPok.stats[2].base_stat,
+          speed: myPok.stats[5].base_stat,
+          height: myPok.height,
+          weight: myPok.weight,
+          types: myPok.types.map((type) => type.type.name),
+        };
+        myPoks.push(myPok);
+      }
+      return res.status(200).json(myPoks);
+      //myPoks is an array of pokemones
     } catch (error) {
       return res.status(404).json(error.message);
     }
     //
   } else {
-    //return the pokemon received by query:
+    //-------------------------------------return the pokemon by name received by query:
     try {
       //search in database:
       myPok = await Pokemon.findAll({
         //myPok es un array con pokemones
         where: {
-          nombre: pokName,
+          name: pokName,
         },
       });
       myPok = myPok[0];
@@ -43,18 +68,18 @@ const getPokemons = async (req, res) => {
       if (myPok === undefined) {
         myPok = await axios(`https://pokeapi.co/api/v2/pokemon/${pokName}`);
         myPok = myPok.data;
-        //Store the pokemon in db:
-        // await Pokemon.create({
-        //   id: myPok.id,
-        //   nombre: myPok.name,
-        //   altura: myPok.height,
-        //   peso: myPok.weight,
-        //   imagen: myPok.sprites.front_default,
-        //   //vida:
-        //   //ataque:
-        //   //defensa:
-        //   //velocidad:
-        // });
+        myPok = {
+          id: myPok.id,
+          name: myPok.forms[0].name,
+          image: myPok.sprites.other.home.front_default,
+          life: myPok.stats[0].base_stat,
+          attack: myPok.stats[1].base_stat,
+          defense: myPok.stats[2].base_stat,
+          speed: myPok.stats[5].base_stat,
+          height: myPok.height,
+          weight: myPok.weight,
+          types: myPok.types.map((type) => type.type.name),
+        };
       }
       //finally, return the pokemon
       return res.status(200).json(myPok);

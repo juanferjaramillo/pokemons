@@ -9,39 +9,51 @@ const pokemonmodel = (sequelize) => {
       primaryKey: true,
       autoIncrement: false,
     },
-    nombre: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // vida: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
-    imagen: {
+    life: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    image: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    // ataque: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
-    // defensa: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    // },
-    // velocidad: {
-    //   type: DataTypes.STRING,
-    //   allowNull: true,
-    // },
-    altura: {
-      type: DataTypes.STRING,
+    attack: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    defense: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    speed: {
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
-    peso: {
-      type: DataTypes.STRING,
+    height: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    weight: {
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
   });
 };
 
 module.exports = pokemonmodel;
+
+
+// id: pokemon.id,
+// 		name: pokemon.forms[0].name,
+// 		image: pokemon.sprites.other.home.front_default,
+// 		life: pokemon.stats[0].base_stat,
+// 		attack: pokemon.stats[1].base_stat,
+// 		defense: pokemon.stats[2].base_stat,
+// 		speed: pokemon.stats[5].base_stat,
+// 		height: pokemon.height,
+// 		weight: pokemon.weight,
+// 		types: pokemon.types.map((type) => type.type.name)
