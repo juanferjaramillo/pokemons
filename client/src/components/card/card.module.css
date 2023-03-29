@@ -28,11 +28,11 @@
 }
 
 .divName {
-    border-radius: 35%;
+    border-radius: 25%;
     /* background-color: blue; */
     background-color: var(--random-color);
     color: black;
-    font-size: 2vw;
+    font-size: 1.5vw;
     border-style: solid;
     border-color: gray;
     width: 90%;

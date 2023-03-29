@@ -1,17 +1,17 @@
 import style from "./card.module.css";
 
-function Card() {
+function Card(props) {
   const randomColor1 = "#" + Math.floor(Math.random() * 16777215).toString(16);
   const randomColor2 = "#" + Math.floor(Math.random() * 16777215).toString(16);
 
   return (
     <div className={style.divCard} style={{ "--random-color": randomColor2 }}>
       <div className={style.divInfo}>
-        <div className={style.divName}>Pidgey</div>
-        <div className={style.divType}>Poison</div>
-        <div className={style.divType}>Ground</div>
-        <div className={style.divType}>Flying</div>
-        <div className={style.divType}>Poison</div>
+        <div className={style.divName}>{props.name}</div>
+        <div className={style.divType}>{props.type1}</div>
+        <div className={style.divType}>{props.type2}</div>
+        <div className={style.divType}>{props.type3}</div>
+        <div className={style.divType}>{props.type4}</div>
       </div>
 
       <div className={style.divImg} style={{ "--random-color": randomColor1 }}>
@@ -21,7 +21,8 @@ function Card() {
 
         <img
           className={style.imgPokemon}
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/16.png"
+          // src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/16.png"
+          src={props.image}
           alt="Pokemon"
         />
       </div>
