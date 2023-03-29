@@ -10,7 +10,9 @@ const getPokemons = async (req, res) => {
   console.log(`served by getPokemons`);
   //check if query received contains a name
   const pokName = req.query.name;
-  const pokPage = req.query.page;
+  let pokPage = req.query.page;
+  //if (pokPage === undefined) {pokPage = 1};
+
   //
   let myPoks = [];
   if (pokName === undefined) {
@@ -30,6 +32,7 @@ const getPokemons = async (req, res) => {
         myPok = {
           id: myPok.id,
           name: myPok.forms[0].name,
+          // image: myPok.sprites.other.official-artwork.front_default,
           image: myPok.sprites.other.home.front_default,
           life: myPok.stats[0].base_stat,
           attack: myPok.stats[1].base_stat,
@@ -67,6 +70,7 @@ const getPokemons = async (req, res) => {
           id: myPok.id,
           name: myPok.forms[0].name,
           image: myPok.sprites.other.home.front_default,
+          // image: myPok.sprites.other.official-artwork.front_default,
           life: myPok.stats[0].base_stat,
           attack: myPok.stats[1].base_stat,
           defense: myPok.stats[2].base_stat,

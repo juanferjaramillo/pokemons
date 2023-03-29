@@ -3,15 +3,18 @@ import style from "./card.module.css";
 function Card(props) {
   const randomColor1 = "#" + Math.floor(Math.random() * 16777215).toString(16);
   const randomColor2 = "#" + Math.floor(Math.random() * 16777215).toString(16);
-
   return (
     <div className={style.divCard} style={{ "--random-color": randomColor2 }}>
       <div className={style.divInfo}>
         <div className={style.divName}>{props.name}</div>
-        <div className={style.divType}>{props.type1}</div>
-        <div className={style.divType}>{props.type2}</div>
-        <div className={style.divType}>{props.type3}</div>
-        <div className={style.divType}>{props.type4}</div>
+        {props.type1 !== undefined ? 
+        <div className={style.divType}>{props.type1}</div> : null}
+        {props.type2 !== undefined ? 
+        <div className={style.divType}>{props.type2}</div> : null}
+        {props.type3 !== undefined ? 
+        <div className={style.divType}>{props.type3}</div> : null}
+        {props.type4 !== undefined ? 
+        <div className={style.divType}>{props.type4}</div> : null}
       </div>
 
       <div className={style.divImg} style={{ "--random-color": randomColor1 }}>

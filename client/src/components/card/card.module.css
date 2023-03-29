@@ -1,5 +1,6 @@
 .divCard {
     display: flex;
+    align-items: center;
     border-radius: 10%;
     border-style: solid;
     border-color: blue;
@@ -11,9 +12,10 @@
 .divInfo {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 40%;
+    height: 90%;
 }
 
 .divImg {
@@ -45,5 +47,5 @@
 }
 
 .imgPokemon {
-    width: 100%;
+    width: 90%;
 }

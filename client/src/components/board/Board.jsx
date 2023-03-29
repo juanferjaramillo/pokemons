@@ -4,8 +4,7 @@ import { useSelector } from "react-redux";
 
 function Board() {
 const poksOnBoard = useSelector((state) => state.cardsOnBoard)
-console.log('Board: poksOnBoard');  
-console.log(poksOnBoard);  
+ 
 return (
     <div className={style.divBoard}>
       {poksOnBoard.map((pk) => {

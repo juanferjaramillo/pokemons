@@ -1,6 +1,6 @@
 .divAction {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
     min-height: 6vh;
     border-color: lightgray;
@@ -36,8 +36,8 @@
     border-radius: 30%;
     width: 30%;
     height: 70%;
-    border-color: darkgrey;
-    background-color: gray;
+    border-color: lightg;
+    background-color: lightgray;
 }
 
 .buttonFilterAttack {
@@ -45,7 +45,7 @@
     width: 30%;
     height: 70%;
     border-color: darkgrey;
-    background-color: gray;
+    background-color: lightgray;
 }
 
 .inputSarch {
@@ -55,8 +55,11 @@
 }
 
 .buttonGo {
-    background-color: gray;
+    background-color: greenyellow;
     width: 10%;
     border-radius: 10%;
+}
 
+.titleDisp {
+    background-color: white;
 }

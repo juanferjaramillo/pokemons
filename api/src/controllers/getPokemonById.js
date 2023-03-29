@@ -21,8 +21,9 @@ const getPokemonById = async (req, res) => {
       myPok = myPok.data;
 
       myPok = {
-        id: myPok.id,
+        id: myPok.id, 
         name: myPok.forms[0].name,
+        // image: myPok.sprites.other.official-artwork.front_default,
         image: myPok.sprites.other.home.front_default,
         life: myPok.stats[0].base_stat,
         attack: myPok.stats[1].base_stat,
