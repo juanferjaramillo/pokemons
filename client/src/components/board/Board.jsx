@@ -21,69 +21,6 @@ return (
         );
       })}
 
-      {/* <Card
-        key={1}
-        name="pidgey"
-        type1="poison"
-        type2="ground"
-        type3="poison"
-        type4="flying"
-        image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/16.png"
-      />
-      <Card
-        key={2}
-        name="fearow"
-        type1="poison"
-        type2="ground"
-        type3="poison"
-        type4="flying"
-        image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/22.png"
-      />
-      <Card
-        key={2}
-        name="raichu"
-        type1="poison"
-        type2="ground"
-        type3="poison"
-        type4="flying"
-        image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/26.png"
-      />
-      <Card
-        key={2}
-        name="nidoqueen"
-        type1="poison"
-        type2="ground"
-        type3="poison"
-        type4="flying"
-        image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/31.png"
-      />
-      <Card
-        key={2}
-        name="sandshrew"
-        type1="poison"
-        type2="ground"
-        type3="poison"
-        type4="flying"
-        image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/27.png"
-      />
-      <Card
-        key={2}
-        name="golduck"
-        type1="poison"
-        type2="ground"
-        type3="poison"
-        type4="flying"
-        image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/55.png"
-      />
-      <Card
-        key={2}
-        name="beedrill"
-        type1="poison"
-        type2="ground"
-        type3="poison"
-        type4="flying"
-        image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/15.png"
-      /> */}
     </div>
   );
 }

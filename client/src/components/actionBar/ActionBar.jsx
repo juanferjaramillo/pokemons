@@ -33,13 +33,17 @@ function ActionBar() {
 
   const handleFilterTypeChange = (event) => {
     dispatch(filterTypeCards(event.target.value));
-    
-  }
+  };
 
-  const handleFilterOriginChange = (event) => {}
+  const handleFilterOriginChange = (event) => {};
 
+  const handleOrderByName = () => {}
+  
+  const handleOrderByAttack = () => {}
+  
   return (
     <div className={style.divAction}>
+      {/* ------------------------FILTERS-------------------- */}
       <div className={style.divFilter}>
         <select
           name="filterType"
@@ -47,35 +51,33 @@ function ActionBar() {
           onChange={handleFilterTypeChange}
           className={style.select}
         >
-          <option name="" value="">
-            TYPE
+          <option name="aaa" value="bbb">
+            
           </option>
           <option value="all">No filter</option>
-          <option value="normal">normal</option>
-          <option value="fighting">fighting</option>
-          <option value="flying">flying</option>
-          <option value="poison">poison</option>
-          <option value="ground">ground</option>
-          <option value="rock">rock</option>
           <option value="bug">bug</option>
-          <option value="ghost">ghost</option>
-          <option value="steel">steel</option>
-          <option value="fire">fire</option>
-          <option value="water">water</option>
-          <option value="grass">grass</option>
-          <option value="electric">electric</option>
-          <option value="psychic">psychic</option>
-          <option value="ice">ice</option>
-          <option value="dragon">dragon</option>
           <option value="dark">dark</option>
+          <option value="dragon">dragon</option>
+          <option value="electric">electric</option>
           <option value="fairy">fairy</option>
-          <option value="unknown">unknown</option>
+          <option value="fighting">fighting</option>
+          <option value="fire">fire</option>
+          <option value="flying">flying</option>
+          <option value="ghost">ghost</option>
+          <option value="grass">grass</option>
+          <option value="ground">ground</option>
+          <option value="ice">ice</option>
+          <option value="normal">normal</option>
+          <option value="poison">poison</option>
+          <option value="psychic">psychic</option>
+          <option value="rock">rock</option>
           <option value="shadow">shadow</option>
+          <option value="steel">steel</option>
+          <option value="unknown">unknown</option>
+          <option value="water">water</option>
         </select>
 
-        <div
-        className={style.titleDisp}
-        >-- Filter --</div>
+        <div className={style.titleDisp}>-- Filter --</div>
 
         <select
           name="filterOrigin"
@@ -86,20 +88,27 @@ function ActionBar() {
           <option name="" value="">
             ORIGIN
           </option>
-          <option value="normal">API</option>
-          <option value="fighting">Database</option>
+          <option value="api">API</option>
+          <option value="database">Database</option>
         </select>
       </div>
+
+      {/* -------------------ORDER--------------- */}
       <div className={style.divOrder}>
-        <button className={style.buttonFilterName}>Name ▼</button>
-       
-        <div
-        className={style.titleDisp}
-        >-- Order --</div>
-       
-        <button className={style.buttonFilterAttack}>Attack ▼</button>
+        <button 
+        className={style.buttonFilterName}
+        onClick={handleOrderByName}
+        >Name ▼</button>
+
+        <div className={style.titleDisp}>-- Order --</div>
+
+        <button 
+        className={style.buttonFilterAttack}
+        onClick = {handleOrderByAttack}
+        >Attack ▼</button>
       </div>
 
+      {/* ---------------------SEARCH-------------------- */}
       <div className={style.divSearch}>
         <button className={style.buttonFilterAttack} onClick={handleBringAll}>
           Todos!
