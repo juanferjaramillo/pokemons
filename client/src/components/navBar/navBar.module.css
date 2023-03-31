@@ -9,7 +9,10 @@
 }
 
 .divLogo {
+    display: flex;
+    justify-content: center;
     max-height: 100%;
+
 }
 
 .divMenu {

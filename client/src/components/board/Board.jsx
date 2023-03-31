@@ -1,11 +1,17 @@
 import style from "./board.module.css";
 import Card from "../card/Card";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { updateBoard } from "../../redux/actions";
 
 function Board() {
-const poksOnBoard = useSelector((state) => state.cardsOnBoard)
- 
-return (
+  const dispatch = useDispatch();
+  let poksOnBoard = useSelector((state) => state.cardsFiltered);
+  let page = useSelector((state) => state.page);
+  poksOnBoard = poksOnBoard.slice(12 * (page - 1), (12 * page));
+  dispatch(updateBoard(poksOnBoard));
+  //updates the state with the cards shown
+
+  return (
     <div className={style.divBoard}>
       {poksOnBoard.map((pk) => {
         return (
@@ -20,7 +26,6 @@ return (
           />
         );
       })}
-
     </div>
   );
 }

@@ -1,9 +1,8 @@
 import style from "./actionBar.module.css";
 import { useState } from "react";
-import { addToBoard, getAllPks, storeBoardPage } from "../../redux/actions";
-import { filterTypeCards } from "../../redux/actions";
-import { filetOriginCards } from "../../redux/actions";
-import { useDispatch } from "react-redux";
+import { addToBoard, orderByName, storeBoardPage } from "../../redux/actions";
+import { filterTypeCards, orderByAttack } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 
 function ActionBar() {
   const dispatch = useDispatch();
@@ -24,20 +23,30 @@ function ActionBar() {
     //DOM stays the same because there is no change to render
   };
 
+  //-------------------ALL!-------------
+   let poksOnBoard = useSelector((state) => state.cardsOnGame);
   const handleBringAll = () => {
-    dispatch(storeBoardPage(1));
-    //stores page 1 as initial to show all pks
-    dispatch(getAllPks(1));
-    //fetches all pks from API
+  poksOnBoard = poksOnBoard.slice(0, 12);
+  //dispatch(updateBoard(poksOnBoard));
+  dispatch(filterTypeCards('all')); 
+  dispatch(storeBoardPage(1));
+
+  dispatch(orderByName('none'));
+  dispatch(orderByAttack('none'));
+
   };
 
+//--------------------FILTERS---------------
   const handleFilterTypeChange = (event) => {
     dispatch(filterTypeCards(event.target.value));
   };
 
   const handleFilterOriginChange = (event) => {};
 
-  const handleOrderByName = () => {}
+  const handleOrderByName = () => {
+    //if it is none || down -> up
+    //if up -> down
+  }
   
   const handleOrderByAttack = () => {}
   
@@ -52,9 +61,8 @@ function ActionBar() {
           className={style.select}
         >
           <option name="aaa" value="bbb">
-            
+            TYPE
           </option>
-          <option value="all">No filter</option>
           <option value="bug">bug</option>
           <option value="dark">dark</option>
           <option value="dragon">dragon</option>
@@ -110,8 +118,9 @@ function ActionBar() {
 
       {/* ---------------------SEARCH-------------------- */}
       <div className={style.divSearch}>
-        <button className={style.buttonFilterAttack} onClick={handleBringAll}>
-          Todos!
+        <button className={style.buttonFilterAttack} 
+        onClick={handleBringAll}>
+          All!
         </button>
 
         <input

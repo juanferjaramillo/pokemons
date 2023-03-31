@@ -2,10 +2,10 @@ import style from "./footerBar.module.css";
 import { increaseBoardPage, decreaseBoardPage, getAllPks } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
-const handleNextClick = (page, dispatch) => {
+const handleNextClick = (dispatch) => {
   dispatch(increaseBoardPage());
   //increase the page in global store
-  dispatch(getAllPks(page));
+  //dispatch(getAllPks(page));
   //fetch the new page of poks
 };
 
@@ -13,7 +13,7 @@ const handlePreviousClick = (page, dispatch) => {
   if(page > 0) {
   dispatch(decreaseBoardPage());
   //devrease the page in global store
-  dispatch(getAllPks(page));
+  //dispatch(getAllPks(page));
   //fetch the new page of poks
   }
 };
@@ -45,7 +45,7 @@ function FooterBar() {
           className={style.buttonPage}
           type="button"
           onClick={() => {
-            handleNextClick(page + 1, dispatch);
+            handleNextClick(dispatch);
           }}
         >
           Next

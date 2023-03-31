@@ -24,7 +24,8 @@ const getPokemons = async (req, res) => {
       //verify that the page is 84, then returns only 2 more from API and
       //start retrieving from db
       ///////////////////////////////////////////////////////////////////////////////
-      for (i = 12 * pokPage - 11; i <= 12 * pokPage; i++) {
+      // for (i = 12 * pokPage - 11; i <= 12 * pokPage; i++) {
+      for (i = 1; i <= 60; i++) {
         //returns array of 12 pokemons
         pokNext = `https://pokeapi.co/api/v2/pokemon/${i}`;
         let myPok = await axios(pokNext);
