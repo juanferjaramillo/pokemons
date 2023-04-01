@@ -1,0 +1,29 @@
+RIDUX STATE
+
+on Cards:
+
+cardsOnGame: ALL cards brought from API in chunks of 60.  Somehow equivalent to the PokeApi.
+
+cardsFiltered: CardsonGame filtered or ordered
+
+cardsOnBoard: all cards currently on display.  It has a maximum of 12 cards.  -Depricated!!
+
+1. SplashPage load:
+Loads cardsOnGame from API
+dispatch(getAllPks());
+
+2. BoardPage load:
+Board component does not modify the state! it renders a map of cardsOnFilter, with the state.page change.
+
+3. All:
+Updates cardsFiltered by copying cardsOnGame
+which also updates state.page to 1
+dispatch(dispAllPk())
+
+4. Filters:
+Updates cardsFiltered by filtering cardsOnGame on filter selected
+dispatch(filterTypeCards(event.target.value));
+
+5. Order:
+Updates cardsFiltered by ordering cardsFiltered by name or attack
+------- ESTA FUNCION TAMBIEN ORDENA cardsOnGame (NI IDEA POR QUE) Y NO RENDERIZA LOS CAMBIOS -----

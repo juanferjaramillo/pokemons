@@ -5,14 +5,14 @@ import SplashPage from "./components/pages/SplashPage";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 function App() {
-  const url = useLocation().pathname;
+  //const url = useLocation().pathname;
   return (
 
     <div>
       <Routes>
         <Route path={'/'} element={<SplashPage />}> </Route>
         <Route path={'/pokemon'} element={<BoardPage />}> </Route>
-        <Route path={'/detail'} element={<DetailPage />}> </Route>
+        <Route path={'/detail/:id'} element={<DetailPage />}> </Route>
       </Routes>
     </div>
 

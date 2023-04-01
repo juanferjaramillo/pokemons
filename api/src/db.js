@@ -38,9 +38,11 @@ let capsEntries = entries.map((entry) => [
 sequelize.models = Object.fromEntries(capsEntries);
 
 // Relaciones de entidades
+
 const { Type, Pokemon } = sequelize.models;
 Type.belongsToMany(Pokemon, { through: "PokeType" });
 Pokemon.belongsToMany(Type, { through: "PokeType" });
+
 //the many-to-many relation creates a new table called PokeType
 
 module.exports = {

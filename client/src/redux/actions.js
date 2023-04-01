@@ -1,14 +1,14 @@
 import axios from "axios";
 export const ADD_TO_BOARD = "ADD_TO_BOARD"; //Add a pokemon to the board array
-export const UPDATE_BOARD = "UPDATE_BOARD";
 export const ADD_PK_TO_BOARD = "ADD_PK_TO_BOARD";
 export const GET_ALL_PK = "GET_ALL_PK";
 export const STORE_BOARD_PAGE = "STORE_BOARD_PAGE";
 export const INCREASE_BOARD_PAGE = "INCREASE_BOARD_PAGE";
 export const DECREASE_BOARD_PAGE = "DECREASE_BOARD_PAGE";
-export const ORDER_BY_NAME = 'ORDER_BY_NAME';
-export const ORDER_BY_ATTACK = 'ORDER_BY_ATTACK';
+export const ORDER_BY_NAME = "ORDER_BY_NAME";
+export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
+export const DISPLAY_ALL_PK = " DISPLAY_ALL_PK";
 
 export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 export const POST_PK = "POST_PK";
@@ -18,6 +18,12 @@ export const storeBoardPage = (page) => {
   return {
     type: STORE_BOARD_PAGE,
     payload: page,
+  };
+};
+
+export const dispAllPk = () => {
+  return {
+    type: DISPLAY_ALL_PK,
   };
 };
 
@@ -35,24 +41,18 @@ export const decreaseBoardPage = () => {
 
 export const addToBoard = (pok) => {
   //Add a pokemon to the board array
-    return {
-      type: ADD_TO_BOARD,
-      payload: pok,
-    };
-  };
-
-export const updateBoard = (poks) => {
   return {
-    type: UPDATE_BOARD,
-    payload: poks
-  }
-}
+    type: ADD_TO_BOARD,
+    payload: pok,
+  };
+};
 
-export const getAllPks = (page = 1) => {
-  //brings all pks in groups of 12
+export const getAllPks = () => {
+  //brings 60 pks to the state.
   return async function (dispatch) {
     let myPoks = await axios.get(
-      `http://localhost:3001/pokemons/?page=${page}`
+      // `http://localhost:3001/pokemons/?page=${page}`
+      `http://localhost:3001/pokemons/`
     );
     myPoks = myPoks.data;
     return dispatch({
@@ -72,14 +72,14 @@ export const filterTypeCards = (type) => {
 
 export const orderByName = (filt) => {
   return {
-    type: ORDER_BY_NAME,
-    payload: filt
-  }
-}
+     type: ORDER_BY_NAME,
+      payload: filt,
+  };
+};
 
 export const orderByAttack = (filt) => {
   return {
     type: ORDER_BY_ATTACK,
-    payload: filt
-  }
-}
+    payload: filt,
+  };
+};

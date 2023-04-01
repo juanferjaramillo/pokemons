@@ -1,36 +1,50 @@
-// -  ID.
-// -  Nombre.
-// -  Imagen.
-// -  Vida.
-// -  Ataque.
-// -  Defensa.
-// -  Velocidad (si tiene).
-// -  Altura (si tiene).
-// -  Peso (si tiene).
-// -  Tipo.
-
+import { useLocation, useParams } from "react-router-dom";
 import style from "./detail.module.css";
 import { useSelector } from "react-redux";
-import Card from "../card/Card";
 
-function Detail(props) {
-  //const myPok = useSelector((state) => state.cardsOnBoard[props.id - 1]);
+function Detail() {
+  const { id } = useParams();
+  const myPok = useSelector((state) => state.cardsFiltered).filter(
+    (pk) => Number(pk.id) === Number(id)
+  )[0];
+  const { name, attack, defense, height, image, life, speed, weight, types } =
+    myPok;
 
   return (
-    <div className={style.divDetail}>
-      <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/34.png' />
-       
-        {/* // key={myPok.id}
-        // name={myPok.name}
-        // type1={myPok.types[3]}
-        // type2={myPok.types[2]}
-        // type3={myPok.types[1]}
-        // type4={myPok.types[0]}
-        // image={myPok.image} */}
+    <div className={style.divContainer}>
+      <div className={style.divDetails}>
+        <div className={style.divTitle}>
+          <div className={style.divMyPokemon}>My Pokemon</div>
+        </div>
 
+        <div className={style.line}>
+          __________________________________________________________
+        </div>
 
-   
+        <div className={style.divDetail}>
+          <div className={style.divImg}>
+            <img src={image} />
+          </div>
+          <div className={style.divPowers}>
+            <div className={style.divNombre}>{name}</div>
+            <div className={style.divPowerBars}>
+              <div className={style.divPw}>{`defense: ${defense}`}</div>
+              <div className={style.divPw}>{`attack: ${attack}`}</div>
+              <div className={style.divPw}>{`life: ${life}`}</div>
+              <div className={style.divPw}>{`speed: ${speed}`}</div>
+              <div className={style.divId}>{id}</div>
+            </div>
+          </div>
+        </div>
+
+        <div className={style.divSpec}>
+          <div className={style.divTypes}>{`${types[0]} & ${types[1]}`}</div>
+          <div className={style.divWH}>{`height: ${height}`}</div>
+          <div className={style.divWH}>{`weight: ${weight}`}</div>
+        </div>
+      </div>
     </div>
   );
 }
+
 export default Detail;

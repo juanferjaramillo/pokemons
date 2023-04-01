@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import style from './navBar.module.css';
 
 function NavBar() {
@@ -11,7 +12,9 @@ function NavBar() {
             </div>
 
             <div className={style.divMenu}>
+                <Link to='/pokemon'>
                 <span>Home</span>
+                </Link>
                 <span>About</span>
             </div>
 

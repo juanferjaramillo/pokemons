@@ -31,6 +31,7 @@ const getPokemonById = async (req, res) => {
         speed: myPok.stats[5].base_stat,
         height: myPok.height,
         weight: myPok.weight,
+        origin: myPok.origin,
         types: myPok.types.map((type) => type.type.name),
       };
     }else {console.log("pokemon retrieved from database");}

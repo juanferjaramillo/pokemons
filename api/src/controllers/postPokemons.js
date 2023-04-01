@@ -11,8 +11,7 @@ const postPokemons = async (req, res) => {
     myPok.life === undefined ||
     myPok.image === undefined ||
     myPok.attack === undefined ||
-    myPok.defense === undefined ||
-    myPok.typeId === undefined
+    myPok.defense === undefined 
     ) {
       return res.status(400).json({"err": "faltan datos para crear el pokemon"})
     }
@@ -20,9 +19,12 @@ const postPokemons = async (req, res) => {
   try {
     //
     //creates the new pokemon in db:
+    myPok.origin = "db"
     const newPok = await Pokemon.create(myPok);
-    await newPok.addType(myPok.typeId);
+    for (i=0; i<newPok.length; i++) {
+    await newPok.addType(myPok.typeId[i]);
     //creates a new register in the intermediate table
+    }
     return res.status(200).json(myPok);
   } catch (error) { 
     //catch the error:

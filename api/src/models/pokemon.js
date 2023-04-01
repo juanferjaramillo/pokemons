@@ -41,6 +41,14 @@ const pokemonmodel = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
+    origin: {
+      type: DataTypes.STRING,
+      allowNull: true,  
+    },
+    typeId: {
+      type: DataTypes.ARRAY(DataTypes.INTEGER),
+      allowNull:true
+    }
   });
 };
 

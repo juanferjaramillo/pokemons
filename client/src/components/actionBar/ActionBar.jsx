@@ -1,11 +1,13 @@
 import style from "./actionBar.module.css";
 import { useState } from "react";
-import { addToBoard, orderByName, storeBoardPage } from "../../redux/actions";
+import { addToBoard, orderByName, dispAllPk } from "../../redux/actions";
 import { filterTypeCards, orderByAttack } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function ActionBar() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [pok, setPok] = useState("");
   //creates local state for handling the search input text
@@ -24,43 +26,41 @@ function ActionBar() {
   };
 
   //-------------------ALL!-------------
-   let poksOnBoard = useSelector((state) => state.cardsOnGame);
+  let poksOnBoard = useSelector((state) => state.cardsOnGame);
   const handleBringAll = () => {
-  poksOnBoard = poksOnBoard.slice(0, 12);
-  //dispatch(updateBoard(poksOnBoard));
-  dispatch(filterTypeCards('all')); 
-  dispatch(storeBoardPage(1));
-
-  dispatch(orderByName('none'));
-  dispatch(orderByAttack('none'));
-
+    poksOnBoard = poksOnBoard.slice(0, 12);
+    dispatch(dispAllPk());
   };
 
-//--------------------FILTERS---------------
+  //--------------------FILTERS---------------
   const handleFilterTypeChange = (event) => {
     dispatch(filterTypeCards(event.target.value));
   };
 
   const handleFilterOriginChange = (event) => {};
 
-  const handleOrderByName = () => {
+  //-------------------ORDER---------------
+
+  // const ON = useSelector((state) => state.orderByName);
+  const handleOrderByName = (ON) => {
     //if it is none || down -> up
     //if up -> down
-  }
-  
-  const handleOrderByAttack = () => {}
-  
+    dispatch(orderByName(ON));
+  };
+
+  const handleOrderByAttack = () => {};
+
   return (
     <div className={style.divAction}>
       {/* ------------------------FILTERS-------------------- */}
       <div className={style.divFilter}>
         <select
           name="filterType"
-          value="none"
+          //value="none"
           onChange={handleFilterTypeChange}
           className={style.select}
         >
-          <option name="aaa" value="bbb">
+          <option name="" value="">
             TYPE
           </option>
           <option value="bug">bug</option>
@@ -89,7 +89,7 @@ function ActionBar() {
 
         <select
           name="filterOrigin"
-          value="none"
+          //value=''
           onChange={handleFilterOriginChange}
           className={style.select}
         >
@@ -103,23 +103,26 @@ function ActionBar() {
 
       {/* -------------------ORDER--------------- */}
       <div className={style.divOrder}>
-        <button 
-        className={style.buttonFilterName}
-        onClick={handleOrderByName}
-        >Name ▼</button>
+        <button
+          className={style.buttonFilterName}
+          onClick={() => handleOrderByName("up")}
+        >
+          Name ▼
+        </button>
 
         <div className={style.titleDisp}>-- Order --</div>
 
-        <button 
-        className={style.buttonFilterAttack}
-        onClick = {handleOrderByAttack}
-        >Attack ▼</button>
+        <button
+          className={style.buttonFilterAttack}
+          onClick={handleOrderByAttack}
+        >
+          Attack ▼
+        </button>
       </div>
 
       {/* ---------------------SEARCH-------------------- */}
       <div className={style.divSearch}>
-        <button className={style.buttonFilterAttack} 
-        onClick={handleBringAll}>
+        <button className={style.buttonFilterAttack} onClick={handleBringAll}>
           All!
         </button>
 
