@@ -12,8 +12,6 @@ const initialState = {
   filterByOrigin: "none", //Api or db
   cardsOnGame: [],
   //Cards brought from API
-  cardsOnBoard: [],
-  //all cards currently on display.  Accounts for applied filters
   cardsFiltered: [],
   //cards with filter and order applied
 };
@@ -24,9 +22,12 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
   
     case ADD_TO_BOARD:
+      case ADD_TO_BOARD:
       return {
         ...state,
-        cardsOnBoard: [...state.cardsOnBoard, action.payload],
+        cardsFiltered: [action.payload],
+        cardsOnGame: [...state.cardsOnGame, action.payload],
+        page: 1,
       };
 
     case STORE_BOARD_PAGE:

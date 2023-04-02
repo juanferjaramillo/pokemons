@@ -17,10 +17,10 @@ function Board() {
               <Card
                 key={pk.id}
                 name={pk.name}
-                type1={pk.types[3]}
-                type2={pk.types[2]}
-                type3={pk.types[1]}
-                type4={pk.types[0]}
+                // type1={pk.types[3]}
+                // type2={pk.types[2]}
+                // type3={pk.types[1]}
+                // type4={pk.types[0]}
                 image={pk.image}
                 attack={pk.attack}
                 defense={pk.defense}
@@ -29,7 +29,7 @@ function Board() {
                 speed={pk.speed}
                 height={pk.height}
                 weight={pk.weight}
-                types={pk.types}
+                // types={pk.types}
                 origin={pk.origin}
               />
             );

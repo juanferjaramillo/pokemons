@@ -40,10 +40,20 @@ export const decreaseBoardPage = () => {
 };
 
 export const addToBoard = (pok) => {
-  //Add a pokemon to the board array
-  return {
-    type: ADD_TO_BOARD,
-    payload: pok,
+  //Add a pokemon to the board array (by name)
+  return async function (dispatch) {
+    try {
+      let myPok = await axios.get(
+        `http://localhost:3001/pokemons/?name=${pok}`
+      );
+      myPok = myPok.data;
+      return dispatch({
+        type: ADD_TO_BOARD,
+        payload: myPok,
+      });
+    } catch (error) {
+      console.log(`error: ${error.message}`);
+    }
   };
 };
 
