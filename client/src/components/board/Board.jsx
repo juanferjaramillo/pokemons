@@ -19,8 +19,8 @@ function Board() {
                 name={pk.name}
                 // type1={pk.types[3]}
                 // type2={pk.types[2]}
-                // type3={pk.types[1]}
-                // type4={pk.types[0]}
+                type3={pk.types[1]}
+                type4={pk.types[0]}
                 image={pk.image}
                 attack={pk.attack}
                 defense={pk.defense}

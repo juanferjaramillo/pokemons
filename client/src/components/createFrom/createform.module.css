@@ -52,6 +52,7 @@
 .divProperties {
     display: flex;
     flex-wrap: wrap;
+    padding: 2vw;
     border-style: solid;
     border-color: yellow;
     justify-content: center; 

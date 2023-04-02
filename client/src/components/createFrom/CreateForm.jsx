@@ -21,17 +21,21 @@ function CreateForm() {
     speed: 0,
     height: 0,
     weight: 0,
+    type1:0,
+    type2:0
   });
 
   const [errors, setErrors] = useState({
     name: "",
-    imageURL: "",
+    imageUrl: "",
     attack: "",
     defense: "",
     life: "",
     speed: "",
     height: "",
     weight: "",
+    type1:"",
+    type2:""
   });
 
   const handleInputChange = (evento) => {
@@ -45,6 +49,21 @@ function CreateForm() {
     });
     //retorna un objeto de errores {username: errors:}
     setErrors(validar);
+  };
+
+  const handleSubmitCreate = (event) => {
+    event.preventDefault();
+    const newPok = {
+      name: pokData.name,
+      imageUrl: pokData.imageUrl,
+      attack: pokData.attack,
+      defense: pokData.defense,
+      life: pokData.life,
+      speed: pokData.speed,
+      height: pokData.height,
+      weight: pokData.height,
+      typesId: []
+    };
   };
 
   return (
@@ -62,7 +81,7 @@ function CreateForm() {
         <form
           className={style.form}
           type="submit"
-          // onSubmit={(event) => login(userData, event)}
+          onSubmit={(event) => handleSubmitCreate(event)}
         >
           <span className={style.text}>Name:</span>
           <input
@@ -143,7 +162,7 @@ function CreateForm() {
               <p className={style.warning}>{errors.defense}</p>
             </div>
 
-            <sapn className={style.text}>Life:</sapn>
+            <span className={style.text}>Life:</span>
             <div className={style.prop}>
               <input
                 className={style.inputProperty}
@@ -176,8 +195,8 @@ function CreateForm() {
                 name="type1"
                 type="text"
                 placeholder="type1"
-                // value={userData.tp}
-                // onChange={handleInputChange}
+                value={userData.type1}
+                onChange={handleInputChange}
               ></input>
               <p className={style.warning}>error here</p>
             </div>
@@ -189,8 +208,8 @@ function CreateForm() {
                 name="type2"
                 type="text"
                 placeholder="type2"
-                // value={userData.password}
-                // onChange={handleInputChange}
+                value={userData.type2}
+                onChange={handleInputChange}
               ></input>
               <p className={style.warning}>error here</p>
             </div>

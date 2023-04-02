@@ -22,6 +22,7 @@ export const storeBoardPage = (page) => {
 };
 
 export const dispAllPk = () => {
+  // console.log('in dispallpk');
   return {
     type: DISPLAY_ALL_PK,
   };
@@ -60,11 +61,9 @@ export const addToBoard = (pok) => {
 export const getAllPks = () => {
   //brings 60 pks to the state.
   return async function (dispatch) {
-    let myPoks = await axios.get(
-      // `http://localhost:3001/pokemons/?page=${page}`
-      `http://localhost:3001/pokemons/`
-    );
+    let myPoks = await axios.get(`http://localhost:3001/pokemons/`);
     myPoks = myPoks.data;
+    
     return dispatch({
       type: GET_ALL_PK,
       payload: myPoks,
@@ -82,8 +81,8 @@ export const filterTypeCards = (type) => {
 
 export const orderByName = (filt) => {
   return {
-     type: ORDER_BY_NAME,
-      payload: filt,
+    type: ORDER_BY_NAME,
+    payload: filt,
   };
 };
 

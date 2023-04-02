@@ -29,9 +29,9 @@ function ActionBar() {
   };
 
   //-------------------ALL!-------------
-  let poksOnBoard = useSelector((state) => state.cardsOnGame);
+  //let poksOnBoard = useSelector((state) => state.cardsOnGame);
   const handleBringAll = () => {
-    poksOnBoard = poksOnBoard.slice(0, 12);
+    //poksOnBoard = poksOnBoard.slice(0, 12);
     dispatch(dispAllPk());
   };
 

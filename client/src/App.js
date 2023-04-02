@@ -1,6 +1,7 @@
 import "./App.css";
 import CreateForm from "./components/createFrom/CreateForm";
 import BoardPage from "./components/pages/BoardPage";
+import CreatePage from "./components/pages/CreatePage";
 import DetailPage from "./components/pages/DetailPage";
 import SplashPage from "./components/pages/SplashPage";
 import { Route, Routes, useLocation } from "react-router-dom";
@@ -13,8 +14,9 @@ function App() {
       <Routes>
         <Route path={'/'} element={<SplashPage />}> </Route>
         <Route path={'/pokemon'} element={<BoardPage />}> </Route>
-        <Route path={'/pokemon/create'} element={<CreateForm />}></Route>
+        <Route path={'/pokemon/create'} element={<CreatePage />}></Route>
         <Route path={'/detail/:id'} element={<DetailPage />}> </Route>
+       
       </Routes>
     </div>
 

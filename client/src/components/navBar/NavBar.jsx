@@ -6,7 +6,6 @@ function NavBar() {
   const navigate = useNavigate();
 
   const handleCrearClick = () => {
-    console.log("should display details");
     navigate(`/pokemon/create`);
   };
 

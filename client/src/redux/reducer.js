@@ -67,8 +67,8 @@ const reducer = (state = initialState, action) => {
       };
 
     case ORDER_BY_NAME:
+      console.log('ordenando');
        const arrON = [...state.cardsFiltered]
-
       arrON.sort((a, b) => 
         a.name.localeCompare(b.name)
       )
@@ -87,9 +87,10 @@ const reducer = (state = initialState, action) => {
       };
 
     case  DISPLAY_ALL_PK:
+      // console.log('Reducer: Display All');
       return {
         ...state,
-        cardsFiltered: state.cardsOnGame,
+        cardsFiltered: [...state.cardsOnGame],
         page: 1
       }  
 

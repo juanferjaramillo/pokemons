@@ -2,10 +2,13 @@
 //información de ese pokemon.
 //Sin no recibe query, devuelve un arreglo de objetos, donde cada objeto es un pokemon
 //con su información.
-const { Pokemon } = require("../db.js");
+const { Pokemon, Type } = require("../db.js");
 const axios = require("axios");
 //
 //might receive a name (for details) as query
+
+const preparePokemon = (pok) => {};
+
 const getPokemons = async (req, res) => {
   console.log(`served by getPokemons`);
   //check if query received contains a name
@@ -14,15 +17,39 @@ const getPokemons = async (req, res) => {
   let myPoks = [];
   let myPok = {};
   if (pokName === undefined) {
-    //-----------------------------------------did not received name by query,
-    //---------------------------------return all pokemons from db first and API at the end
     try {
-      //-------------------retrieve from database:
-      myPoks = await Pokemon.findAll()  //array of pokemons
-      console.log(`myPoks`);
-      console.log(myPoks);
+      //--------------------------------------- ALL FROM DATABASE:
+      myPoks = await Pokemon.findAll({
+        include: {
+          model: Type,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+      });
 
-      //-------------------retrieve from API
+      myPoks = myPoks.map((pk) => {
+        return (
+        {
+          id: pk.id,
+          name: pk.name,
+          image: pk.image,
+          life: pk.life,
+          attack: pk.attack,
+          defense: pk.defense,
+          speed: pk.speed,
+          height: pk.height,
+          weight: pk.weight,
+          types: [pk.types[0].name, pk.types[1].name],
+          origin: "db",
+        })
+      })
+
+        console.log('-----------------------------PK');
+        console.log(myPoks);
+       
+      //---------------------------------------- ALL FROM API
 
       for (i = 1; i <= 24; i++) {
         //returns array of 60 pokemons
@@ -41,7 +68,7 @@ const getPokemons = async (req, res) => {
           height: myPok.height,
           weight: myPok.weight,
           types: myPok.types.map((type) => type.type.name),
-          origin: "api"
+          origin: "api",
         };
         myPoks.push(myPok);
       }
@@ -52,26 +79,53 @@ const getPokemons = async (req, res) => {
     }
     //
   } else {
-    //-------------------------------------return the pokemon by name received on query:
+    //------------------------------------- WITH NAME FROM DATABASE
     try {
       console.log(`search in database:`);
       myPok = await Pokemon.findAll({
-        //myPok es un array con pokemones
-        where: {
-          name: pokName,
+        where: { name: pokName },
+        include: {
+          model: Type,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
         },
       });
-      myPok = myPok[0];
-      //if not found in database, fetch from API:
-      if (myPok === undefined) {
+      console.log('myPok from db');
+      console.log(myPok);
+
+
+      if (myPok.length === 1) {
+      myPok =
+      {
+        id: myPok[0].id,
+        name: myPok[0].name,
+        image: myPok[0].image,
+        life: myPok[0].life,
+        attack: myPok[0].attack,
+        defense: myPok[0].defense,
+        speed: myPok[0].speed,
+        height: myPok[0].height,
+        weight: myPok[0].weight,
+        types: [myPok[0].types[0].name, myPok[0].types[1].name],
+        origin: "db",
+      }
+
+      console.log('MyPok with name');
+      console.log(myPok);
+    }
+
+      //------------------------------------- WITH NAME FROM API
+      if (myPok.length === 0) {
         console.log("pokemon retrieved from the API");
         myPok = await axios(`https://pokeapi.co/api/v2/pokemon/${pokName}`);
         myPok = myPok.data;
+
         myPok = {
           id: myPok.id,
           name: myPok.forms[0].name,
           image: myPok.sprites.other.home.front_default,
-          // image: myPok.sprites.other.official-artwork.front_default,
           life: myPok.stats[0].base_stat,
           attack: myPok.stats[1].base_stat,
           defense: myPok.stats[2].base_stat,
@@ -79,10 +133,11 @@ const getPokemons = async (req, res) => {
           height: myPok.height,
           weight: myPok.weight,
           types: myPok.types.map((type) => type.type.name),
-          origin: "api"
+          origin: "api",
         };
       } else {
         console.log("pokemon retrieved from database");
+        console.log(myPok);
       }
       //finally, return the pokemon
       return res.status(200).json(myPok);
