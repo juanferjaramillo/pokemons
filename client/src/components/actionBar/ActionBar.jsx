@@ -4,6 +4,9 @@ import { addToBoard, orderByName, dispAllPk } from "../../redux/actions";
 import { filterTypeCards, orderByAttack } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import CreateForm from "../createFrom/CreateForm";
+import DetailPage from "../pages/DetailPage";
+import { Link } from "react-router-dom";
 
 function ActionBar() {
   const dispatch = useDispatch();

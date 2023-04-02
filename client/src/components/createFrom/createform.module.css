@@ -1,0 +1,187 @@
+.divContainer {
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 94Vh;
+}
+
+.divTitle {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 80%;
+    /* background-color: aqua; */
+}
+
+.divMyPokemon {
+    font-size: 3vw;
+    color:white;
+    width: 80%;
+    /* background-color: blueviolet; */
+}
+
+.line {
+    color: white;
+    width: 70%;
+}
+
+.divForm {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    /* background-color: darkgray; */
+    justify-content:center;
+    align-items: center;
+    /* border-style: solid;
+    border-color: white; */
+}
+
+.inputForm {
+    border-style: solid;
+    /* border-color: yellow; */
+}
+ 
+.warning {
+    color: red;
+    font-size: 1vw;
+}
+
+.divProperties {
+    display: flex;
+    flex-wrap: wrap;
+    border-style: solid;
+    border-color: yellow;
+    justify-content: center; 
+}
+
+.inputProperty {
+    max-width: 50%;
+}
+
+.prop {
+    display: flex;
+    flex-direction: column;
+}
+
+.text {
+    color: White;
+}
+
+
+
+
+.divDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    /* border-color: yellow; */
+    /* border-style: solid; */
+    /* background-color: yellow; */
+}
+
+
+
+.divDetail {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    max-height: 60vh;
+    justify-content: space-around;
+    /* background-color: blue; */
+}
+
+.divSpec {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: space-around;
+    border-color: white;
+    border-bottom: 0;
+    border-right: 0;
+    border-left: 0;
+    border-style: solid;
+    /* background-color: red; */
+}
+
+.divTypes {
+    border-color: yellow;
+    border-bottom: 0.1vw;
+    color: yellow;
+    font-size: 2vw;
+}
+
+.divWH {
+    font-size: 2vw;
+    color: white;
+}
+
+
+
+.divId {
+    display: flex;
+    font-size: 1.5vw;
+    color: white;
+    border-radius: 50%;
+    border-color: lightyellow;
+    border-style: solid;
+    border-width: 0.1vw;
+    width: 3vw;
+    height: 3vw;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5vw;
+    margin-top: 3vw;
+    /* background-color: blue; */
+}
+
+.divImg {
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    align-items: top;
+    padding-bottom: 1vw;
+
+    /* background-color: darkviolet; */
+}
+
+.divPowers {
+    display: flex;
+    flex-direction: column;
+    /* background-color: forestgreen; */
+}
+
+.divNombre {
+    font-size: 3vw;
+    color:white;
+    padding-top: 1vw;
+    /* background-color: brown; */
+}
+
+.divPowerBars {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* flex-wrap: wrap; */
+    margin-top: 1vw;
+    /* background-color: red; */
+}
+
+.divPw {
+    display: flex;
+    justify-content: center;
+    border-style: solid;
+    border-color: yellow;
+    border-width: 0.1vw;
+    color: white;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    margin-top: 1vw;
+    width: 100%;
+
+
+}
+
