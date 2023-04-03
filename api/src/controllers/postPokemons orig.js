@@ -14,9 +14,9 @@ const postPokemons = async (req, res) => {
     myPok.attack === undefined ||
     myPok.defense === undefined 
     ) {
-      return res.status(400).json({"err1": "faltan datos para crear el pokemon"})
+      return res.status(400).json({"err": "faltan datos para crear el pokemon"})
     }
-    if (myPok.id <= 1010) {return res.status(400).json({"err2": "el id ya existe!"})}
+    if (myPok.id <= 1010) {return res.status(400).json({"err": "el id ya existe!"})}
   try {
     //
     //creates the new pokemon in db:
@@ -28,7 +28,7 @@ const postPokemons = async (req, res) => {
       attack: myPok.attack,
       defense: myPok.defense,
       speed: myPok.speed,
-      height: myPok.height,
+      heigth: myPok.height,
       weight: myPok.weight,
       origin: "db"
     }

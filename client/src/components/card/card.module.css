@@ -30,7 +30,9 @@
 }
 
 .divName {
-    border-radius: 25%;
+    display: flex;
+    justify-content: center;
+    border-radius: 15%;
     /* background-color: blue; */
     background-color: var(--random-color);
     color: black;
@@ -40,6 +42,8 @@
     width: 90%;
 }
 .divType {
+    display: flex;
+    justify-content: center;
     border-radius: 15%;
     border-style: solid;
     border-color: darkgray;

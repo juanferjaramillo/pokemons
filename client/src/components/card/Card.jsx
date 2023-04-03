@@ -3,11 +3,17 @@ import { Link } from "react-router-dom";
 
 function Card(props) {
   const randomColor1 = "#" + Math.floor(Math.random() * 16777215).toString(16);
-  const randomColor2 = "#" + Math.floor(Math.random() * 16777215).toString(16);
+
+  // const randomColor2 = "#" + Math.floor(Math.random() * 16777215).toString(16);
+  const colors = ["#F5CBA7", "#F7DC6F", "#82E0AA", "#AED6F1", "#D7BDE2"];
+  const randomColor2 = colors[Math.floor(Math.random() * colors.length)];
+  
+
+  
   return (
-    <div className={style.divCard} style={{ "--random-color": randomColor2 }}>
+    <div className={style.divCard} style={{ "--random-color": randomColor1 }}>
       <div className={style.divInfo}>
-        <div className={style.divName}>{props.name}</div>
+        <div className={style.divName} style={{'--random-color': randomColor2}}>{props.name}</div>
         {props.type1 !== undefined ? (
           <div className={style.divType}>{props.type1}</div>
         ) : null}

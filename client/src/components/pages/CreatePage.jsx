@@ -3,7 +3,7 @@ import Detail from "../detail/Detail";
 import NavBar from "../navBar/NavBar";
 
 function CreatePage() {
-  console.log("En DeatilPage");
+  console.log("En CreatePage");
   return (
     <>
       <NavBar />

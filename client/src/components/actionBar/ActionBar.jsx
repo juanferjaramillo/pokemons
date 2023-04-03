@@ -1,6 +1,11 @@
 import style from "./actionBar.module.css";
 import { useState } from "react";
-import { addToBoard, orderByName, dispAllPk } from "../../redux/actions";
+import {
+  addToBoard,
+  orderByName,
+  dispAllPk,
+  filterOriginCards,
+} from "../../redux/actions";
 import { filterTypeCards, orderByAttack } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -40,18 +45,19 @@ function ActionBar() {
     dispatch(filterTypeCards(event.target.value));
   };
 
-  const handleFilterOriginChange = (event) => {};
+  const handleFilterOriginChange = (event) => {
+    dispatch(filterOriginCards(event.target.value));
+  };
 
   //-------------------ORDER---------------
 
   // const ON = useSelector((state) => state.orderByName);
-  const handleOrderByName = (ON) => {
+  const handleOrderByName = (ON) =>
     //if it is none || down -> up
     //if up -> down
     dispatch(orderByName(ON));
-  };
 
-  const handleOrderByAttack = () => {};
+  const handleOrderByAttack = (OA) => dispatch(orderByAttack(OA));
 
   return (
     <div className={style.divAction}>
@@ -100,7 +106,7 @@ function ActionBar() {
             ORIGIN
           </option>
           <option value="api">API</option>
-          <option value="database">Database</option>
+          <option value="db">Database</option>
         </select>
       </div>
 
@@ -117,7 +123,7 @@ function ActionBar() {
 
         <button
           className={style.buttonFilterAttack}
-          onClick={handleOrderByAttack}
+          onClick={() => handleOrderByAttack("up")}
         >
           Attack ▼
         </button>

@@ -1,20 +1,18 @@
-import { useLocation, useParams } from "react-router-dom";
 import style from "./createform.module.css";
-import { useSelector } from "react-redux";
-import validate from "./validation";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
+import validate from "./validation";
+import { postPokemon } from "../../redux/actions";
+
 
 function CreateForm() {
-  // const { id } = useParams();
-  // const myPok = useSelector((state) => state.cardsFiltered).filter(
-  // (pk) => Number(pk.id) === Number(id)
-  // )[0];
-  // const { name, attack, defense, height, image, life, speed, weight, types } =
-  // myPok;
+
+  const dispatch = useDispatch();
 
   const [pokData, setPokData] = useState({
+    id: "",
     name: "",
-    imageURL: "",
+    imageUrl: "",
     attack: 0,
     defense: 0,
     life: 0,
@@ -26,6 +24,7 @@ function CreateForm() {
   });
 
   const [errors, setErrors] = useState({
+    id: 0,
     name: "",
     imageUrl: "",
     attack: "",
@@ -54,6 +53,7 @@ function CreateForm() {
   const handleSubmitCreate = (event) => {
     event.preventDefault();
     const newPok = {
+      id: pokData.id,
       name: pokData.name,
       imageUrl: pokData.imageUrl,
       attack: pokData.attack,
@@ -62,8 +62,10 @@ function CreateForm() {
       speed: pokData.speed,
       height: pokData.height,
       weight: pokData.height,
-      typesId: []
+      typeId: [pokData.type1, pokData.type2],
+      origin: "db"
     };
+    dispatch(postPokemon(newPok));
   };
 
   return (
@@ -83,6 +85,19 @@ function CreateForm() {
           type="submit"
           onSubmit={(event) => handleSubmitCreate(event)}
         >
+
+<span className={style.text}>id:</span>
+          <input
+            className={style.inputForm}
+            name="id"
+            type="integer"
+            placeholder="id"
+            value={pokData.id}
+            onChange={handleInputChange}
+          ></input>
+          <p className={style.warning}>{errors.id}</p>
+
+          <br></br>
           <span className={style.text}>Name:</span>
           <input
             className={style.inputForm}
@@ -92,7 +107,6 @@ function CreateForm() {
             value={pokData.name}
             onChange={handleInputChange}
           ></input>
-
           <p className={style.warning}>{errors.name}</p>
 
           <br></br>
@@ -195,7 +209,7 @@ function CreateForm() {
                 name="type1"
                 type="text"
                 placeholder="type1"
-                value={userData.type1}
+                value={pokData.type1}
                 onChange={handleInputChange}
               ></input>
               <p className={style.warning}>error here</p>
@@ -208,7 +222,7 @@ function CreateForm() {
                 name="type2"
                 type="text"
                 placeholder="type2"
-                value={userData.type2}
+                value={pokData.type2}
                 onChange={handleInputChange}
               ></input>
               <p className={style.warning}>error here</p>

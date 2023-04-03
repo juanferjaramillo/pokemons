@@ -1,8 +1,9 @@
 import { ADD_TO_BOARD, STORE_BOARD_PAGE } from "./actions";
 import { INCREASE_BOARD_PAGE, DECREASE_BOARD_PAGE } from "./actions";
-import { GET_ALL_PK, FILTER_BY_TYPE } from "./actions";
+import { GET_ALL_PK, FILTER_BY_TYPE, FILTER_BY_ORIGIN } from "./actions";
 import { ORDER_BY_NAME, ORDER_BY_ATTACK } from "./actions";
-import {DISPLAY_ALL_PK} from "./actions";
+import {DISPLAY_ALL_PK, POST_PK, GET_TYPES} from "./actions";
+
 
 const initialState = {
   page: 0,
@@ -66,8 +67,17 @@ const reducer = (state = initialState, action) => {
         cardsFiltered: arrFT,
       };
 
+    case FILTER_BY_ORIGIN:
+      const arrFO = state.cardsOnGame.filter((ele) =>
+      ele.origin === action.payload)
+      return {
+        ...state,
+        cardsFiltered: arrFO,
+        page: 1
+      }
+
     case ORDER_BY_NAME:
-      console.log('ordenando');
+      console.log('ordering by name');
        const arrON = [...state.cardsFiltered]
       arrON.sort((a, b) => 
         a.name.localeCompare(b.name)
@@ -80,10 +90,13 @@ const reducer = (state = initialState, action) => {
       };
 
     case ORDER_BY_ATTACK:
-      const arrOA = state.cardsFiltered.sort();
+      console.log('ordering by attack');
+      const arrOA = [...state.cardsFiltered]
+      arrOA.sort((a,b) => {return a.attack-b.attack});
       return {
         ...state,
         cardsFiltered: arrOA,
+        page: 1 
       };
 
     case  DISPLAY_ALL_PK:
@@ -93,6 +106,13 @@ const reducer = (state = initialState, action) => {
         cardsFiltered: [...state.cardsOnGame],
         page: 1
       }  
+
+    case POST_PK:
+      return {
+        ...state,
+        cardsOnGame: [...state.cardsOnGame, action.payload],
+        cardsFiltered: [...state.cardsFiltered, action.payload]
+      }
 
     default:
       return { ...state };

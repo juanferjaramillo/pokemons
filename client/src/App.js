@@ -9,14 +9,18 @@ import { Route, Routes, useLocation } from "react-router-dom";
 function App() {
   //const url = useLocation().pathname;
   return (
-
     <div>
       <Routes>
-        <Route path={'/'} element={<SplashPage />}> </Route>
-        <Route path={'/pokemon'} element={<BoardPage />}> </Route>
-        <Route path={'/pokemon/create'} element={<CreatePage />}></Route>
-        <Route path={'/detail/:id'} element={<DetailPage />}> </Route>
-       
+        <Route  exact path={"/"} element={<SplashPage />}>
+          {" "}
+        </Route>
+
+        <Route  exact path={'/pokemon'} element={<BoardPage />}> </Route>
+
+        <Route exact path={"/pokemon/create"} element={<CreatePage />}></Route>
+        <Route exact path={"/detail/:id"} element={<DetailPage />}>
+          {" "}
+        </Route>
       </Routes>
     </div>
 

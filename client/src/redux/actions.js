@@ -9,9 +9,9 @@ export const ORDER_BY_NAME = "ORDER_BY_NAME";
 export const ORDER_BY_ATTACK = "ORDER_BY_ATTACK";
 export const FILTER_BY_TYPE = "FILTER_BY_TYPE";
 export const DISPLAY_ALL_PK = " DISPLAY_ALL_PK";
-
-export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 export const POST_PK = "POST_PK";
+export const GET_TYPES = "GET_TYPES";
+export const FILTER_BY_ORIGIN = "FILTER_BY_ORIGIN";
 
 export const storeBoardPage = (page) => {
   //stores the page being shown on the board
@@ -62,12 +62,62 @@ export const getAllPks = () => {
   //brings 60 pks to the state.
   return async function (dispatch) {
     let myPoks = await axios.get(`http://localhost:3001/pokemons/`);
+    await axios.get("http://localhost:3001/types");
     myPoks = myPoks.data;
-    
+
     return dispatch({
       type: GET_ALL_PK,
       payload: myPoks,
     });
+  };
+};
+
+// export const postPokemon = (pok) => {
+//   return async function () {
+//     try {
+//       console.log(`actions en dispatch: `);
+//       pok = {
+//         id: Number(pok.id),
+//         name: pok.name,
+//         life: Number(pok.life),
+//         image: pok.imageUrl,
+//         attack: Number(pok.attack),
+//         defense: Number(pok.defense),
+//         typeId: [Number(pok.typeId[0]), Number(pok.typeId[1])],
+//       };
+//       console.log(pok);
+//       const resp = await axios.post("http://localhost:3001/pokemons", pok);
+//     } catch (error) {
+//       console.log(`actions: ${error.message}`);
+//     }
+//   };
+// };
+
+export const postPokemon = (pok) => {
+  return async function (dispatch) {
+
+    try {
+      console.log(`actions en dispatch: `);
+      pok = {
+        id: Number(pok.id),
+        name: pok.name,
+        life: Number(pok.life),
+        image: pok.imageUrl,
+        attack: Number(pok.attack),
+        defense: Number(pok.defense),
+        speed: Number(pok.speed),
+        height: Number(pok.height),
+        weight: Number(pok.weight),    
+        typeId: [Number(pok.typeId[0]), Number(pok.typeId[1])]
+      }
+      const resp = await axios.post('http://localhost:3001/pokemons', pok);
+      return dispatch({
+        type: POST_PK,
+        payload: pok,
+      });
+    } catch (error) {
+      console.log(`actions: ${error.message}`);
+    }
   };
 };
 
@@ -76,6 +126,14 @@ export const filterTypeCards = (type) => {
   return {
     type: FILTER_BY_TYPE,
     payload: type,
+  };
+};
+
+export const filterOriginCards = (origin) => {
+  console.log(`filter by ${origin}`);
+  return {
+    type: FILTER_BY_ORIGIN,
+    payload: origin,
   };
 };
 
