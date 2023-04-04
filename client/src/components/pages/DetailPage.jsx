@@ -6,7 +6,7 @@ function DetailPage() {
   return (
     <>
       <NavBar />
-      <Detail id={3} />
+      <Detail />
     </>
   );
 }

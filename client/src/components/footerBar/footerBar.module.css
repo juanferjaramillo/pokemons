@@ -5,7 +5,7 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    max-height:  3vw;
+    height:  5vh;
 }
 
 .divCorner {
@@ -26,21 +26,23 @@
 .buttonPage {
     border-radius: 10%;
     width: 15%;
-    min-height: 6vh;
+    height: 5vh;
     background-color: yellow;
+    cursor: pointer;
 }
 
 .divMe {
     display: flex;
     background-color: green;
     border-radius: 50%;
-    width: 3vw;
-    height: 3vw;
+    width: 5vh;
+    height: 5vh;
     margin-left: 1vw;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .imageHenry {
-    max-width: 40%;
+    height: 4vh;
 }

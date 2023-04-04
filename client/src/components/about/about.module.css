@@ -1,0 +1,125 @@
+.divContainer {
+    display: flex;
+    width: 100vw;
+    height: 94Vh;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+}
+
+.divDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+}
+
+.divTitle {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 80%;
+}
+
+.divDetail {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    max-height: 60vh;
+    justify-content: space-around;
+}
+
+.divSpec {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    justify-content: left;
+    border-color: white;
+    border-bottom: 0;
+    border-right: 0;
+    border-left: 0;
+    border-style: solid;
+}
+
+.divTypes {
+    border-color: yellow;
+    border-bottom: 0.1vw;
+    color: yellow;
+    font-size: 2vw;
+}
+
+.divWH {
+    font-size: 2vw;
+    color: white;
+}
+
+.divMyPokemon {
+    font-size: 3vw;
+    color:white;
+    width: 70%;
+}
+
+.divId {
+    display: flex;
+    font-size: 1.5vw;
+    color: white;
+    border-radius: 50%;
+    border-color: lightyellow;
+    border-style: solid;
+    border-width: 0.1vw;
+    width: 3.5vw;
+    height: 3.5vw;
+    justify-content: center;
+    align-items: center;
+    padding: 0.5vw;
+    margin-top: 2vw;
+    margin-bottom: 1vw;
+}
+
+.imageHenry {
+    height: 4vh;
+}
+
+.divImg {
+    display: flex;
+    width: 60%;
+    justify-content: center;
+    align-items: top;
+    padding-bottom: 1vw;
+}
+
+.divPowers {
+    display: flex;
+    flex-direction: column;
+}
+
+.divNombre {
+    font-size: 3vw;
+    color:white;
+    padding-top: 1vw;
+}
+
+.divPowerBars {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1vw;
+}
+
+.divPw {
+    display: flex;
+    justify-content: center;
+    border-style: solid;
+    border-color: yellow;
+    border-width: 0.1vw;
+    color: white;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    margin-top: 1vw;
+    width: 100%;
+}
+
+.line {
+    color: white;
+    width: 70%;
+}

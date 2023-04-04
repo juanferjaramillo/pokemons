@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-around;
     width: 100%;
-    min-height: 6vh;
+    height: 6vh;
     border-color: lightgray;
     border-style: solid;
 }
@@ -29,7 +29,6 @@
     justify-content: space-around;
     align-items: center;
     width: 29%;
-
 }
 
 .buttonFilterName {
@@ -38,6 +37,7 @@
     height: 70%;
     border-color: lightg;
     background-color: lightgray;
+    cursor: pointer;
 }
 
 .buttonFilterAttack {
@@ -46,6 +46,7 @@
     height: 70%;
     border-color: darkgrey;
     background-color: lightgray;
+    cursor: pointer;
 }
 
 .inputSarch {
@@ -58,6 +59,7 @@
     background-color: greenyellow;
     width: 10%;
     border-radius: 10%;
+    cursor: pointer;
 }
 
 .titleDisp {

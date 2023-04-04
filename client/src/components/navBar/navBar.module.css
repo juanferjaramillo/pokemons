@@ -1,16 +1,17 @@
 .divNav {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    height: 6vh;
     flex-wrap: nowrap;
     align-items: auto;
     background-color: yellow;
-    width: 100%;
-    max-height: 6vh;
 }
 
 .divLogo {
     display: flex;
     justify-content: center;
+    width: 30%;
     max-height: 100%;
 
 }
@@ -36,9 +37,10 @@
 
 .buttonCreate {
     border-radius: 25%;
-    background-color: blue;
-    color: yellow;
+    background-color: rgb(78, 177, 248);
+    color: black;
     width: 70%;
     height: 70%;
     margin-right: 10%;
+    cursor: pointer;
 }

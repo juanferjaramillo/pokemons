@@ -23,7 +23,10 @@ function NavBar() {
         <Link to="/pokemon">
           <span>Home</span>
         </Link>
-        <span>About</span>
+
+        <Link to="/about">
+          <span>About</span>
+        </Link>
       </div>
 
       <div className={style.divCrear}>
@@ -32,7 +35,7 @@ function NavBar() {
           className={style.buttonCreate}
           onClick={handleCrearClick}
         >
-          Crear!
+          Create!
         </button>
       </div>
     </div>

@@ -1,5 +1,10 @@
 import style from "./footerBar.module.css";
-import { increaseBoardPage, decreaseBoardPage, getAllPks } from "../../redux/actions";
+import { Link } from "react-router-dom";
+import {
+  increaseBoardPage,
+  decreaseBoardPage,
+  getAllPks,
+} from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
 const handleNextClick = (dispatch) => {
@@ -10,11 +15,11 @@ const handleNextClick = (dispatch) => {
 };
 
 const handlePreviousClick = (page, dispatch) => {
-  if(page > 0) {
-  dispatch(decreaseBoardPage());
-  //devrease the page in global store
-  //dispatch(getAllPks(page));
-  //fetch the new page of poks
+  if (page > 0) {
+    dispatch(decreaseBoardPage());
+    //devrease the page in global store
+    //dispatch(getAllPks(page));
+    //fetch the new page of poks
   }
 };
 
@@ -25,7 +30,9 @@ function FooterBar() {
   return (
     <div className={style.divFooter}>
       <div className={style.divCorner}>
-        <div className={style.divMe}>JF</div>
+        <Link to="/about">
+          <div className={style.divMe}>JF</div>
+        </Link>
       </div>
 
       <div className={style.divPage}>

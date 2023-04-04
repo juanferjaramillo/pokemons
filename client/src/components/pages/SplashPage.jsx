@@ -14,10 +14,8 @@ function SplashPage() {
 
   return (
     <div>
-      <NavBar />
-      <Link to="/pokemon">
+      {/* <NavBar /> */}
         <Welcome />
-      </Link>
     </div>
   );
 }

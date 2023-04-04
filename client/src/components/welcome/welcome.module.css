@@ -1,8 +1,9 @@
 .divWelcome{
+    display: flex;
+    flex-direction: column;
     background-color: yellow;
     width: 100vw;
     height: 100vh;
-    margin-top: 0;
 }
 
 .divImage {
@@ -15,4 +16,15 @@
     justify-content: space-evenly;
     align-items: center;
     margin-top: 2vw;
+}
+
+.button {
+    background-color: burlywood;
+    color: black;
+    width: 20vw;
+    height: 10vh;
+    font-size: 3vh;
+    cursor: pointer;
+    border-radius: 20%;
+    box-shadow: 0.5vw 0.5vh 0.5vw lightyellow;
 }
