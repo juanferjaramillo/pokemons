@@ -23,7 +23,9 @@ function Detail() {
 
         <div className={style.divDetail}>
           <div className={style.divImg}>
-            <img src={image} />
+            <img 
+            className={style.image}
+            src={image} />
           </div>
           <div className={style.divPowers}>
             <div className={style.divNombre}>{name}</div>

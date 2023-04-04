@@ -93,6 +93,7 @@ export const postPokemon = (pok) => {
 
 export const filterTypeCards = (type) => {
   console.log(`filter by ${type}`);
+  
   return {
     type: FILTER_BY_TYPE,
     payload: type,

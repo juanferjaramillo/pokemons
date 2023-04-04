@@ -7,26 +7,22 @@ import {
   filterOriginCards,
 } from "../../redux/actions";
 import { filterTypeCards, orderByAttack } from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import CreateForm from "../createFrom/CreateForm";
-import DetailPage from "../pages/DetailPage";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 function ActionBar() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const [pok, setPok] = useState("");
   //creates local state for handling the search input text
   //contains the pok name input by user for searching.
 
   const handleGoClick = () => {
+    //adiciona el personaje al tablero:
     dispatch(addToBoard(pok));
   };
 
-  //adiciona el personaje al tablero:
   const handleInput = (evento) => {
+    //add the input to the state
     console.log(evento.target.value);
     setPok(evento.target.value.toLowerCase());
     //modifies the state with each pok name input by user
@@ -42,6 +38,7 @@ function ActionBar() {
 
   //--------------------FILTERS---------------
   const handleFilterTypeChange = (event) => {
+    // filterTypeSelect.value = 'TYPE';
     dispatch(filterTypeCards(event.target.value));
   };
 
@@ -61,7 +58,7 @@ function ActionBar() {
 
   return (
     <div className={style.divAction}>
-      {/* ------------------------FILTERS-------------------- */}
+      {/* ------------------------FILTERS RENDER-------------------- */}
       <div className={style.divFilter}>
         <select
           name="filterType"
@@ -69,7 +66,7 @@ function ActionBar() {
           onChange={handleFilterTypeChange}
           className={style.select}
         >
-          <option name="" value="">
+          <option name="filterTypeSelect" value="">
             TYPE
           </option>
           <option value="bug">bug</option>
@@ -102,7 +99,7 @@ function ActionBar() {
           onChange={handleFilterOriginChange}
           className={style.select}
         >
-          <option name="" value="">
+          <option name="filterOriginSelect" value="">
             ORIGIN
           </option>
           <option value="api">API</option>
@@ -110,7 +107,7 @@ function ActionBar() {
         </select>
       </div>
 
-      {/* -------------------ORDER--------------- */}
+      {/* -------------------ORDER RENDER--------------- */}
       <div className={style.divOrder}>
         <button
           className={style.buttonFilterName}
@@ -129,7 +126,7 @@ function ActionBar() {
         </button>
       </div>
 
-      {/* ---------------------SEARCH-------------------- */}
+      {/* ---------------------SEARCH RENDER-------------------- */}
       <div className={style.divSearch}>
         <button className={style.buttonFilterAttack} onClick={handleBringAll}>
           All!

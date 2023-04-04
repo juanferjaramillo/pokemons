@@ -8,7 +8,8 @@ function Board() {
   poksOnBoard = poksOnBoard.slice(12 * (page - 1), 12 * page);
   //if (poksOnBoard) {dispatch(updateBoard(poksOnBoard))};
   //updates the state with the cards shown
-
+console.log('Board:');
+  console.log(poksOnBoard);
   return (
     <div className={style.divBoard}>
       {poksOnBoard.length > 0
@@ -17,8 +18,6 @@ function Board() {
               <Card
                 key={pk.id}
                 name={pk.name}
-                // type1={pk.types[3]}
-                // type2={pk.types[2]}
                 type3={pk.types[1]}
                 type4={pk.types[0]}
                 image={pk.image}

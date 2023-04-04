@@ -1,0 +1,9 @@
+MANDATORY
+quitar la seleccion de un filtro, cuando se selecciona el otro
+ordenar ascendente o descendente al presionar el boton
+terminar la validacion del formulario
+
+OPTIONAL
+limpiar el codigo
+en detalle, eliminar cuando tenga tipo undefined
+
