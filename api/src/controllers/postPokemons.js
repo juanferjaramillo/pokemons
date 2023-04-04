@@ -3,7 +3,7 @@ const { Pokemon, Type } = require("../db.js");
 const postPokemons = async (req, res) => {
   console.log(`served by postPokemons`);
   let myPok = req.body;
-  const typeId = myPok.typeId
+  const {types} = myPok;
   //
   //validate the info received for this pokemon to be created:
   if (
@@ -33,11 +33,12 @@ const postPokemons = async (req, res) => {
       origin: "db"
     }
     const newPok = await Pokemon.create(myPok);
-    const pokType = await Type.findAll({ where: { id: typeId } });
+    const pokType = await Type.findAll({ where: { id: types } });
     //find types on db that coincide with the types received
-    console.log(pokType);
+
     await newPok.addType(pokType);
-    return res.status(200).json(myPok);
+
+    return res.status(200).send([pokType[0].dataValues.name, pokType[1].dataValues.name]);
   } catch (error) {
     //catch the error:
     return res.status(400).send(`errorPost: ${error.message}`);

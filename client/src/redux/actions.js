@@ -72,45 +72,15 @@ export const getAllPks = () => {
   };
 };
 
-// export const postPokemon = (pok) => {
-//   return async function () {
-//     try {
-//       console.log(`actions en dispatch: `);
-//       pok = {
-//         id: Number(pok.id),
-//         name: pok.name,
-//         life: Number(pok.life),
-//         image: pok.imageUrl,
-//         attack: Number(pok.attack),
-//         defense: Number(pok.defense),
-//         typeId: [Number(pok.typeId[0]), Number(pok.typeId[1])],
-//       };
-//       console.log(pok);
-//       const resp = await axios.post("http://localhost:3001/pokemons", pok);
-//     } catch (error) {
-//       console.log(`actions: ${error.message}`);
-//     }
-//   };
-// };
-
 export const postPokemon = (pok) => {
   return async function (dispatch) {
 
     try {
       console.log(`actions en dispatch: `);
-      pok = {
-        id: Number(pok.id),
-        name: pok.name,
-        life: Number(pok.life),
-        image: pok.imageUrl,
-        attack: Number(pok.attack),
-        defense: Number(pok.defense),
-        speed: Number(pok.speed),
-        height: Number(pok.height),
-        weight: Number(pok.weight),    
-        typeId: [Number(pok.typeId[0]), Number(pok.typeId[1])]
-      }
-      const resp = await axios.post('http://localhost:3001/pokemons', pok);
+      // console.log(pok);
+      const typ = (await axios.post('http://localhost:3001/pokemons', pok)).data;
+      pok.types = typ;
+
       return dispatch({
         type: POST_PK,
         payload: pok,

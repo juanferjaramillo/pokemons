@@ -12,7 +12,7 @@ function CreateForm() {
   const [pokData, setPokData] = useState({
     id: "",
     name: "",
-    imageUrl: "",
+    image: "",
     attack: 0,
     defense: 0,
     life: 0,
@@ -26,7 +26,7 @@ function CreateForm() {
   const [errors, setErrors] = useState({
     id: 0,
     name: "",
-    imageUrl: "",
+    image: "",
     attack: "",
     defense: "",
     life: "",
@@ -52,17 +52,18 @@ function CreateForm() {
 
   const handleSubmitCreate = (event) => {
     event.preventDefault();
+
     const newPok = {
-      id: pokData.id,
+      id: Number(pokData.id),
       name: pokData.name,
-      imageUrl: pokData.imageUrl,
-      attack: pokData.attack,
-      defense: pokData.defense,
-      life: pokData.life,
-      speed: pokData.speed,
-      height: pokData.height,
-      weight: pokData.height,
-      typeId: [pokData.type1, pokData.type2],
+      image: pokData.image,
+      attack: Number(pokData.attack),
+      defense: Number(pokData.defense),
+      life: Number(pokData.life),
+      speed: Number(pokData.speed),
+      height: Number(pokData.height),
+      weight: Number(pokData.height),
+      types: [Number(pokData.type1), Number(pokData.type2)],
       origin: "db"
     };
     dispatch(postPokemon(newPok));
@@ -113,7 +114,7 @@ function CreateForm() {
           <span className={style.text}>Image URL:</span>
           <input
             className={style.inputForm}
-            name="imageUrl"
+            name="image"
             type="text"
             placeholder="URL"
             value={pokData.imageUrl}
