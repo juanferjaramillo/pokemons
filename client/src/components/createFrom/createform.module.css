@@ -12,7 +12,7 @@
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
-    width: 80%;
+    width: 85vh;
     /* background-color: aqua; */
 }
 
@@ -25,7 +25,7 @@
 
 .line {
     color: white;
-    width: 70%;
+    width: 70vh;
 }
 
 .divForm {
@@ -56,6 +56,7 @@
     border-style: solid;
     border-color: yellow;
     justify-content: center; 
+    max-width:65vh;
 }
 
 .inputProperty {

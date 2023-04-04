@@ -4,27 +4,11 @@ import { useState } from "react";
 import validate from "./validation";
 import { postPokemon } from "../../redux/actions";
 
-
 function CreateForm() {
-
   const dispatch = useDispatch();
 
   const [pokData, setPokData] = useState({
     id: "",
-    name: "",
-    image: "",
-    attack: 0,
-    defense: 0,
-    life: 0,
-    speed: 0,
-    height: 0,
-    weight: 0,
-    type1:0,
-    type2:0
-  });
-
-  const [errors, setErrors] = useState({
-    id: 0,
     name: "",
     image: "",
     attack: "",
@@ -33,8 +17,22 @@ function CreateForm() {
     speed: "",
     height: "",
     weight: "",
-    type1:"",
-    type2:""
+    type1: "",
+    type2: "",
+  });
+
+  const [errors, setErrors] = useState({
+    id: "enter string or numeric id greater than 1010",
+    name: "enter the pokemon name",
+    image: "enter the URL of the pokemon image",
+    attack: "enter a numeric value",
+    defense: "enter a numeric value",
+    life: "enter a numeric value",
+    speed: "",
+    height: "",
+    weight: "",
+    type1: "enter a numeric value",
+    type2: "",
   });
 
   const handleInputChange = (evento) => {
@@ -42,12 +40,15 @@ function CreateForm() {
       ...pokData,
       [evento.target.name]: evento.target.value,
     });
+
     const validar = validate({
+      //we feed the function with the state and the new event.targe.name, because the state takes some time to update.
       ...pokData,
       [evento.target.name]: evento.target.value,
-    });
-    //retorna un objeto de errores {username: errors:}
-    setErrors(validar);
+    }, setErrors);
+    //returns an object with errors {username: errors:}
+    //setErrors(validar);
+
   };
 
   const handleSubmitCreate = (event) => {
@@ -59,12 +60,12 @@ function CreateForm() {
       image: pokData.image,
       attack: Number(pokData.attack),
       defense: Number(pokData.defense),
-      life: Number(pokData.life),
-      speed: Number(pokData.speed),
-      height: Number(pokData.height),
-      weight: Number(pokData.height),
+      life: Number(pokData.life) || 0,
+      speed: Number(pokData.speed) || 0,
+      height: Number(pokData.height) || 0,
+      weight: Number(pokData.height) || 0,
       types: [Number(pokData.type1), Number(pokData.type2)],
-      origin: "db"
+      origin: "db",
     };
     dispatch(postPokemon(newPok));
   };
@@ -86,8 +87,7 @@ function CreateForm() {
           type="submit"
           onSubmit={(event) => handleSubmitCreate(event)}
         >
-
-<span className={style.text}>id:</span>
+          <span className={style.text}>id:   </span>
           <input
             className={style.inputForm}
             name="id"
@@ -99,7 +99,7 @@ function CreateForm() {
           <p className={style.warning}>{errors.id}</p>
 
           <br></br>
-          <span className={style.text}>Name:</span>
+          <span className={style.text}>Name:   </span>
           <input
             className={style.inputForm}
             name="name"
@@ -111,7 +111,7 @@ function CreateForm() {
           <p className={style.warning}>{errors.name}</p>
 
           <br></br>
-          <span className={style.text}>Image URL:</span>
+          <span className={style.text}>Image URL:   </span>
           <input
             className={style.inputForm}
             name="image"
@@ -120,7 +120,7 @@ function CreateForm() {
             value={pokData.imageUrl}
             onChange={handleInputChange}
           ></input>
-          <p className={style.warning}>{errors.imageUrl}</p>
+          <p className={style.warning}>{errors.image}</p>
 
           <br></br>
 
@@ -213,7 +213,7 @@ function CreateForm() {
                 value={pokData.type1}
                 onChange={handleInputChange}
               ></input>
-              <p className={style.warning}>error here</p>
+              <p className={style.warning}>{errors.type1}</p>
             </div>
 
             <span className={style.text}>Type 2</span>
@@ -226,7 +226,7 @@ function CreateForm() {
                 value={pokData.type2}
                 onChange={handleInputChange}
               ></input>
-              <p className={style.warning}>error here</p>
+              <p className={style.warning}>{errors.type2}</p>
             </div>
           </div>
 
