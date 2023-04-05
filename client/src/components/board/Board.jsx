@@ -8,8 +8,8 @@ function Board() {
   poksOnBoard = poksOnBoard.slice(12 * (page - 1), 12 * page);
   //if (poksOnBoard) {dispatch(updateBoard(poksOnBoard))};
   //updates the state with the cards shown
-console.log('Board:');
-  console.log(poksOnBoard);
+  // console.log('Board:');
+  //   console.log(poksOnBoard);
   return (
     <div className={style.divBoard}>
       {poksOnBoard.length > 0

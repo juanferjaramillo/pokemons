@@ -108,16 +108,16 @@ export const filterOriginCards = (origin) => {
   };
 };
 
-export const orderByName = (filt) => {
+export const orderByName = (OBN) => {
   return {
     type: ORDER_BY_NAME,
-    payload: filt,
+    payload: OBN,
   };
 };
 
-export const orderByAttack = (filt) => {
+export const orderByAttack = (OBA) => {
   return {
     type: ORDER_BY_ATTACK,
-    payload: filt,
+    payload: OBA,
   };
 };

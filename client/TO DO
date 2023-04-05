@@ -1,9 +1,7 @@
 MANDATORY
-terminar la validacion del formulario
-ordenar ascendente o descendente al presionar el boton
-quitar la seleccion de un filtro, cuando se selecciona el otro
+reset filter when ALL, or other filter selected
 
 OPTIONAL
 limpiar el codigo
-en detalle, eliminar cuando tenga tipo undefined
+cambiar inputs de type por select
 

@@ -9,9 +9,17 @@ import {
 import { filterTypeCards, orderByAttack } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
+// let labelOrderName = "Name ..";
+// let labelOrderAttack = "Attack ..";
+
 function ActionBar() {
   const dispatch = useDispatch();
 
+  //---------------------LOCAL STATES---------------------------
+  const [OBN, setOBN] = useState("none");
+  //order by name: 'none', 'asc', 'des'
+  const [OBA, setOBA] = useState("none");
+  //order by attack: 'none', 'asc', 'des'
   const [pok, setPok] = useState("");
   //creates local state for handling the search input text
   //contains the pok name input by user for searching.
@@ -33,6 +41,8 @@ function ActionBar() {
   //let poksOnBoard = useSelector((state) => state.cardsOnGame);
   const handleBringAll = () => {
     //poksOnBoard = poksOnBoard.slice(0, 12);
+    setOBA("none");
+    setOBN("none");
     dispatch(dispAllPk());
   };
 
@@ -49,12 +59,24 @@ function ActionBar() {
   //-------------------ORDER---------------
 
   // const ON = useSelector((state) => state.orderByName);
-  const handleOrderByName = (ON) =>
-    //if it is none || down -> up
-    //if up -> down
-    dispatch(orderByName(ON));
+  // const handleOrderByName = (ON) => {
+  const handleOrderByName = () => {
+    if (OBN === "none" || OBN === "asc") {
+      setOBN("des", dispatch(orderByName(OBN)));
+    } else {
+      setOBN("asc", dispatch(orderByName(OBN)));
+    }
+    setOBA("none");
+  };
 
-  const handleOrderByAttack = (OA) => dispatch(orderByAttack(OA));
+  const handleOrderByAttack = () => {
+    if (OBA === "none" || OBA === "asc") {
+      setOBA("des", dispatch(orderByAttack(OBA)));
+    } else {
+      setOBA("asc", dispatch(orderByAttack(OBA)));
+    }
+    setOBN("none");
+  };
 
   return (
     <div className={style.divAction}>
@@ -110,25 +132,29 @@ function ActionBar() {
       {/* -------------------ORDER RENDER--------------- */}
       <div className={style.divOrder}>
         <button
-          className={style.buttonFilterName}
-          onClick={() => handleOrderByName("up")}
+          className={style.buttonFilter}
+          onClick={() => handleOrderByName()}
         >
-          Name ▼
+          {OBN === "none" ? "Name .." : OBN === "asc" ? "Name ▲" : "Name ▼"}
         </button>
 
         <div className={style.titleDisp}>-- Order --</div>
 
         <button
-          className={style.buttonFilterAttack}
-          onClick={() => handleOrderByAttack("up")}
+          className={style.buttonFilter}
+          onClick={() => handleOrderByAttack()}
         >
-          Attack ▼
+          {OBA === "none"
+            ? "Attack .."
+            : OBA === "asc"
+            ? "Attack ▲"
+            : "Attack ▼"}
         </button>
       </div>
 
       {/* ---------------------SEARCH RENDER-------------------- */}
       <div className={style.divSearch}>
-        <button className={style.buttonFilterAttack} onClick={handleBringAll}>
+        <button className={style.buttonFilter} onClick={handleBringAll}>
           All!
         </button>
 

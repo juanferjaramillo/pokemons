@@ -31,20 +31,11 @@
     width: 29%;
 }
 
-.buttonFilterName {
+.buttonFilter {
     border-radius: 30%;
     width: 30%;
-    height: 70%;
+    height: 4vh;
     border-color: lightg;
-    background-color: lightgray;
-    cursor: pointer;
-}
-
-.buttonFilterAttack {
-    border-radius: 30%;
-    width: 30%;
-    height: 70%;
-    border-color: darkgrey;
     background-color: lightgray;
     cursor: pointer;
 }
