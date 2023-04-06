@@ -32,7 +32,7 @@ function CreateForm() {
     height: "",
     weight: "",
     type1: "select one type",
-    type2: "select one type",
+    type2: "",
   });
 
   const handleInputChange = (evento) => {
@@ -40,89 +40,53 @@ function CreateForm() {
       ...pokData,
       [evento.target.name]: evento.target.value,
     });
-    const validar = validate({
-      //we feed the function with the state and the new event.targe.name, because the state takes some time to update.
-      ...pokData,
-      [evento.target.name]: evento.target.value,
-    });
+    const validar = validate(
+      {
+        //we feed the function with the state and the new event.targe.name, because the state takes some time to update.
+        ...pokData,
+        [evento.target.name]: evento.target.value,
+      }, setErrors
+    );
     setErrors(validar);
     //returns an object with errors {username: errors:}
   };
 
   const handleSelectType1 = (evento) => {
+    console.log('evento.target.value');
+    console.log(evento.target.value);
     setPokData({
       ...pokData,
       [evento.target.name]: evento.target.value,
     });
-    const validar = validate({
-      //we feed the function with the state and the new event.targe.name, because the state takes some time to update.
-      ...pokData,
-      [evento.target.name]: evento.target.value,
-    });
-    setErrors(validar);
-    //returns an object with errors {username: errors:}
-  };
-
-  const handleSelectType2 = (evento) => {
-    setPokData({
-      ...pokData,
-      [evento.target.name]: evento.target.value,
-    });
-    const validar = validate({
-      //we feed the function with the state and the new event.targe.name, because the state takes some time to update.
-      ...pokData,
-      [evento.target.name]: evento.target.value,
-    });
+    const validar = validate(
+      {
+        //we feed the function with the state and the new event.targe.name, because the state takes some time to update.
+        ...pokData,
+        [evento.target.name]: evento.target.value,
+      }, setErrors
+    );
     setErrors(validar);
     //returns an object with errors {username: errors:}
   };
 
   const handleSubmitCreate = (event) => {
     event.preventDefault();
-
-    if (errors.maySubmit === "yes") {
-      //there is no error message on maySubmit state
-      // let tp = [];
-
-      // if (pokData.type2 === "") {
-      //   console.log('one type');
-      //   tp = [Number(pokData.type1)];
-      // } else {
-      //   console.log('both types');
-      //   tp = [Number(pokData.type1), Number(pokData.type2)];
-      // }
-      console.log("createform pokData before number");
-      console.log(pokData);
-      
-      const newPok = {
-        id: Number(pokData.id),
-        name: pokData.name,
-        image: pokData.image,
-        attack: Number(pokData.attack),
-        defense: Number(pokData.defense),
-        life: Number(pokData.life) || 0,
-        speed: Number(pokData.speed) || 0,
-        height: Number(pokData.height) || 0,
-        weight: Number(pokData.height) || 0,
-        types: [Number(pokData.type1), Number(pokData.type2)],
-        origin: "db",
-      };
-
-      console.log("createform newPok");
-      console.log(newPok);
-
-      dispatch(postPokemon(newPok)); 
-      //display a message confirming
-    } else {
-      //display an error message
-
-      console.log("createform pokData");
-      console.log(pokData);
-      console.log('createForm errors');
-      console.log(errors);
-
-      alert("check the info!");
-    }
+    // if there is no errors:
+    const newPok = {
+      id: Number(pokData.id),
+      name: pokData.name,
+      image: pokData.image,
+      attack: Number(pokData.attack),
+      defense: Number(pokData.defense),
+      life: Number(pokData.life) || 0,
+      speed: Number(pokData.speed) || 0,
+      height: Number(pokData.height) || 0,
+      weight: Number(pokData.height) || 0,
+      types: [Number(pokData.type1), Number(pokData.type2)],
+      origin: "db",
+    };
+    dispatch(postPokemon(newPok));
+    //display a message confirming
   };
 
   return (
@@ -176,7 +140,7 @@ function CreateForm() {
             onChange={handleInputChange}
           ></input>
           <p className={style.warning}>{errors.image}</p>
-      
+
           <br></br>
 
           <div className={style.divProperties}>
@@ -275,7 +239,7 @@ function CreateForm() {
                 className={style.select}
                 value={pokData.type1}
               >
-                <option value="">---</option>
+                <option>---</option>
                 <option value="7">bug</option>
                 <option value="17">dark</option>
                 <option value="16">dragon</option>
@@ -297,6 +261,7 @@ function CreateForm() {
                 <option value="19">unknown</option>
                 <option value="11">water</option>
               </select>
+
               <p className={style.warning}>{errors.type1}</p>
             </div>
 
@@ -314,11 +279,11 @@ function CreateForm() {
 
               <select
                 name="type2"
-                onChange={handleSelectType2}
+                onChange={handleSelectType1}
                 className={style.select}
                 value={pokData.type2}
               >
-                <option value="">---</option>
+                <option>---</option>
                 <option value="7">bug</option>
                 <option value="17">dark</option>
                 <option value="16">dragon</option>
@@ -340,11 +305,11 @@ function CreateForm() {
                 <option value="19">unknown</option>
                 <option value="11">water</option>
               </select>
-            <p className={style.warning}>{errors.type2}</p>
+
             </div>
           </div>
-            <br></br>
 
+          <br></br>
           <button type="submit" className={style.submit}>
             Create!
           </button>

@@ -52,7 +52,6 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cardsOnGame: action.payload,
-        //cardsFiltered: action.payload,
       };
 
     case FILTER_BY_TYPE:
@@ -100,7 +99,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case DISPLAY_ALL_PK:
-      // console.log('Reducer: Display All');
+      // loads cardsFiltered with all 60 pokemons in state
       return {
         ...state,
         cardsFiltered: [...state.cardsOnGame],

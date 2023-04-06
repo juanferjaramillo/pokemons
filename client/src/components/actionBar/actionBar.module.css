@@ -56,3 +56,8 @@
 .titleDisp {
     background-color: white;
 }
+
+.select {
+    background-color: lightgray;
+    border-radius: 15%;
+}

@@ -56,7 +56,7 @@
 .divMyPokemon {
     font-size: 3vw;
     color:white;
-    width: 70%;
+    width: 90%;
 }
 
 .divId {
@@ -86,6 +86,7 @@
     justify-content: center;
     align-items: top;
     padding-bottom: 1vw;
+    padding-top:1vw;
 }
 
 .divPowers {
@@ -121,5 +122,5 @@
 
 .line {
     color: white;
-    width: 70%;
+    width: 80%;
 }

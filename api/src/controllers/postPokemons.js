@@ -32,13 +32,16 @@ const postPokemons = async (req, res) => {
       weight: myPok.weight,
       origin: "db"
     }
+
+    console.log('postpokemon myPok');
+    console.log(myPok);
+
     const newPok = await Pokemon.create(myPok);
     const pokType = await Type.findAll({ where: { id: types } });
     //find types on db that coincide with the types received
-
     await newPok.addType(pokType);
-
-    return res.status(200).send([pokType[0].dataValues.name, pokType[1].dataValues.name]);
+    // return res.status(200).send([pokType[0].dataValues.name, pokType[1].dataValues.name]);
+    return res.status(200).json(pokType);
   } catch (error) {
     //catch the error:
     return res.status(400).send(`errorPost: ${error.message}`);

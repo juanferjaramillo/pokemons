@@ -9,9 +9,6 @@ import {
 import { filterTypeCards, orderByAttack } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 
-// let labelOrderName = "Name ..";
-// let labelOrderAttack = "Attack ..";
-
 function ActionBar() {
   const dispatch = useDispatch();
 
@@ -20,15 +17,22 @@ function ActionBar() {
   //order by name: 'none', 'asc', 'des'
   const [OBA, setOBA] = useState("none");
   //order by attack: 'none', 'asc', 'des'
+  const [FBT, setFBT] = useState("---");
+  //filter by type: '---', filter
+  const [FBO, setFBO] = useState("---");
+  //filter by origin: '---', filter
+
   const [pok, setPok] = useState("");
   //creates local state for handling the search input text
   //contains the pok name input by user for searching.
 
+    //-------------------Go-------------
   const handleGoClick = () => {
     //adiciona el personaje al tablero:
     dispatch(addToBoard(pok));
   };
 
+    //-------------------Search Imput-------------
   const handleInput = (evento) => {
     //add the input to the state
     console.log(evento.target.value);
@@ -43,21 +47,29 @@ function ActionBar() {
     //poksOnBoard = poksOnBoard.slice(0, 12);
     setOBA("none");
     setOBN("none");
+    setFBT("---");
+    setFBO("---"); 
     dispatch(dispAllPk());
   };
 
   //--------------------FILTERS---------------
   const handleFilterTypeChange = (event) => {
-    // filterTypeSelect.value = 'TYPE';
+    setFBT(event.target.value);
+    setFBO('---');
+    setOBN('none');
+    setOBA('none');
     dispatch(filterTypeCards(event.target.value));
   };
 
   const handleFilterOriginChange = (event) => {
+    setFBO(event.target.value);
+    setFBT("---");
+    setOBN('none');
+    setOBA('none');
     dispatch(filterOriginCards(event.target.value));
   };
 
   //-------------------ORDER---------------
-
   // const ON = useSelector((state) => state.orderByName);
   // const handleOrderByName = (ON) => {
   const handleOrderByName = () => {
@@ -82,15 +94,14 @@ function ActionBar() {
     <div className={style.divAction}>
       {/* ------------------------FILTERS RENDER-------------------- */}
       <div className={style.divFilter}>
+        <label>TYPE: </label>
         <select
           name="filterType"
-          //value="none"
           onChange={handleFilterTypeChange}
           className={style.select}
+          value={FBT}
         >
-          <option name="filterTypeSelect" value="">
-            TYPE
-          </option>
+          <option>---</option>
           <option value="bug">bug</option>
           <option value="dark">dark</option>
           <option value="dragon">dragon</option>
@@ -115,15 +126,14 @@ function ActionBar() {
 
         <div className={style.titleDisp}>-- Filter --</div>
 
+        <label>ORIGIN: </label>
         <select
           name="filterOrigin"
-          //value=''
           onChange={handleFilterOriginChange}
           className={style.select}
+          value={FBO}
         >
-          <option name="filterOriginSelect" value="">
-            ORIGIN
-          </option>
+          <option>---</option>
           <option value="api">API</option>
           <option value="db">Database</option>
         </select>

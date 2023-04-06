@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-import NavBar from "../navBar/NavBar";
 import Welcome from "../welcome/Welcome";
 import { getAllPks } from "../../redux/actions";
 import { useDispatch } from "react-redux";

@@ -75,7 +75,7 @@ const getPokemons = async (req, res) => {
       return res.status(200).json(myPoks);
       //myPoks is an array of pokemones
     } catch (error) {
-      return res.status(404).json(error.message);
+      return res.status(404).json(`getPokemons: ${error.message}`);
     }
     //
   } else {

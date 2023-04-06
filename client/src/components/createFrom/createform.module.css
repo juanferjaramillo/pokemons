@@ -56,7 +56,7 @@
     border-style: solid;
     border-color: yellow;
     justify-content: center; 
-    max-width:65vh;
+    max-width:90vh;
 }
 
 .inputProperty {
@@ -72,9 +72,6 @@
     color: White;
 }
 
-
-
-
 .divDetails {
     display: flex;
     flex-direction: column;
@@ -84,8 +81,6 @@
     /* border-style: solid; */
     /* background-color: yellow; */
 }
-
-
 
 .divDetail {
     display: flex;
@@ -183,7 +178,13 @@
     padding-bottom: 1vw;
     margin-top: 1vw;
     width: 100%;
-
-
 }
 
+.submit {
+    border-radius: 15%;
+    margin-left: 40%;
+    background-color: lightblue;
+    color: black;
+    width: 20%;
+    height: 3vw;
+}

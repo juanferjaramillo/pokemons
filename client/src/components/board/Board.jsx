@@ -28,7 +28,6 @@ function Board() {
                 speed={pk.speed}
                 height={pk.height}
                 weight={pk.weight}
-                // types={pk.types}
                 origin={pk.origin}
               />
             );

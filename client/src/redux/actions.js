@@ -22,7 +22,7 @@ export const storeBoardPage = (page) => {
 };
 
 export const dispAllPk = () => {
-  // console.log('in dispallpk');
+  // loads cardsFiltered with all 60 pokemons in state
   return {
     type: DISPLAY_ALL_PK,
   };
@@ -62,7 +62,9 @@ export const getAllPks = () => {
   //brings 60 pks to the state.
   return async function (dispatch) {
     let myPoks = await axios.get(`http://localhost:3001/pokemons/`);
+    //request to return 60 pokemons from API to store them in the state
     await axios.get("http://localhost:3001/types");
+    //request to load the types from API to the DB
     myPoks = myPoks.data;
 
     return dispatch({
@@ -73,14 +75,16 @@ export const getAllPks = () => {
 };
 
 export const postPokemon = (pok) => {
+  console.log(`actions en dispatch: `);
+
   return async function (dispatch) {
-
     try {
-      console.log(`actions en dispatch: `);
-      // console.log(pok);
-      const typ = (await axios.post('http://localhost:3001/pokemons', pok)).data;
-      pok.types = typ;
+      const typ = (await axios.post("http://localhost:3001/pokemons", pok))
+        .data;
+        //returns an array with the name strings of the pokemon types
+      pok.types = [typ[0].name, typ[1].name];
 
+      alert("pokemon created!");
       return dispatch({
         type: POST_PK,
         payload: pok,
@@ -93,7 +97,7 @@ export const postPokemon = (pok) => {
 
 export const filterTypeCards = (type) => {
   console.log(`filter by ${type}`);
-  
+
   return {
     type: FILTER_BY_TYPE,
     payload: type,

@@ -3,23 +3,18 @@ import { Link } from "react-router-dom";
 import {
   increaseBoardPage,
   decreaseBoardPage,
-  getAllPks,
 } from "../../redux/actions";
 import { useSelector, useDispatch } from "react-redux";
 
 const handleNextClick = (dispatch) => {
   dispatch(increaseBoardPage());
   //increase the page in global store
-  //dispatch(getAllPks(page));
-  //fetch the new page of poks
 };
 
 const handlePreviousClick = (page, dispatch) => {
   if (page > 0) {
     dispatch(decreaseBoardPage());
     //devrease the page in global store
-    //dispatch(getAllPks(page));
-    //fetch the new page of poks
   }
 };
 

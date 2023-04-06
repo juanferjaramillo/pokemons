@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 
-const typemodel = (rymdb) => {
-  rymdb.define("type", {
+const typemodel = (sequelize) => {
+  sequelize.define("type", {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
