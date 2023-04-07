@@ -17,7 +17,8 @@ const validate = (pokData) => {
   let maySubmit = 'yes'
 
   //assume everything will be ok
-  if (!pokData.id) {
+  if (!pokData.id || Number(pokData.id) <= 1010) {
+  // if (!pokData.id || Number(pokData.id) <= 1010) {
     errors.id = "enter string or numeric id greater than 1010";
     maySubmit = "no";
   }

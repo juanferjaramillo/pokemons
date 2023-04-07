@@ -20,12 +20,13 @@ const reducer = (state = initialState, action) => {
   console.log(`action: ${action.type}`);
 
   switch (action.type) {
+
     case ADD_TO_BOARD:
-    case ADD_TO_BOARD:
+      console.log('reducer: en add_to_board');
       return {
         ...state,
         cardsFiltered: [action.payload],
-        cardsOnGame: [...state.cardsOnGame, action.payload],
+        //cardsOnGame: [...state.cardsOnGame, action.payload],
         page: 1,
       };
 
@@ -52,10 +53,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         cardsOnGame: action.payload,
+        cardsFiltered: action.payload
       };
 
     case FILTER_BY_TYPE:
-      const arrFT = state.cardsOnGame.filter((ele) =>
+      const arrFT = [...state.cardsOnGame].filter((ele) =>
         ele.types.includes(action.payload)
       );
       return {
@@ -65,7 +67,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case FILTER_BY_ORIGIN:
-      const arrFO = state.cardsOnGame.filter(
+      const arrFO = [...state.cardsOnGame].filter(
         (ele) => ele.origin === action.payload
       );
       return {

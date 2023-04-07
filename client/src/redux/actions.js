@@ -62,7 +62,7 @@ export const getAllPks = () => {
   //brings 60 pks to the state.
   return async function (dispatch) {
     let myPoks = await axios.get(`http://localhost:3001/pokemons/`);
-    //request to return 60 pokemons from API to store them in the state
+    //request to return all pokemons from DB and 60 pokemons from API to store them in the state
     await axios.get("http://localhost:3001/types");
     //request to load the types from API to the DB
     myPoks = myPoks.data;

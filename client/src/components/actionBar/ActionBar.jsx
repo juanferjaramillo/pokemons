@@ -35,7 +35,7 @@ function ActionBar() {
     //-------------------Search Imput-------------
   const handleInput = (evento) => {
     //add the input to the state
-    console.log(evento.target.value);
+    console.log(evento.target.value.toLowerCase());
     setPok(evento.target.value.toLowerCase());
     //modifies the state with each pok name input by user
     //DOM stays the same because there is no change to render

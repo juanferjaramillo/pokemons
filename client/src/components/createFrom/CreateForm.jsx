@@ -96,7 +96,7 @@ function CreateForm() {
       
       const newPok = {
         id: Number(pokData.id),
-        name: pokData.name,
+        name: pokData.name.toLowerCase(),
         image: pokData.image,
         attack: Number(pokData.attack),
         defense: Number(pokData.defense),

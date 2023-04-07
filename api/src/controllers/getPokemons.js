@@ -16,7 +16,9 @@ const getPokemons = async (req, res) => {
   //
   let myPoks = [];
   let myPok = {};
+
   if (pokName === undefined) {
+    
     try {
       //--------------------------------------- ALL FROM DATABASE:
       myPoks = await Pokemon.findAll({
@@ -51,7 +53,7 @@ const getPokemons = async (req, res) => {
        
       //---------------------------------------- ALL FROM API
 
-      for (i = 1; i <= 24; i++) {
+      for (i = 1; i <= 60; i++) {
         //returns array of 60 pokemons
         pokNext = `https://pokeapi.co/api/v2/pokemon/${i}`;
         myPok = await axios(pokNext);
