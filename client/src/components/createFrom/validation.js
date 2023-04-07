@@ -11,20 +11,30 @@
 
 const regexURL = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
 const regexName = /^[A-Za-z]*[A-Za-z][A-Za-z0-9-. _]*$/i;
+const regexNumbers = /^\d+$/;
 
-const validate = (pokData) => {
+const validate = (pokData, ids = []) => {
   const errors = {};
-  let maySubmit = 'yes'
-
+  let maySubmit = "yes";
   //assume everything will be ok
+
+  if (ids.includes(Number(pokData.id))) {
+    errors.id = "this id already exists";
+    maySubmit = "no";
+  }
+
+  if (!regexNumbers.test(pokData.id)) {
+    errors.id = "id should be a numeric value";
+    maySubmit = "no";
+  }
+
   if (!pokData.id || Number(pokData.id) <= 1010) {
-  // if (!pokData.id || Number(pokData.id) <= 1010) {
     errors.id = "enter string or numeric id greater than 1010";
     maySubmit = "no";
   }
 
-  // if (pokData.name === "") { 
-    if (!regexName.test(pokData.name)) {
+  // if (pokData.name === "") {
+  if (!regexName.test(pokData.name)) {
     errors.name = "enter the pokemon name";
     maySubmit = "no";
   }
@@ -62,15 +72,15 @@ const validate = (pokData) => {
     errors.type1 = "enter a numeric value";
     maySubmit = "no";
   }
-  
+
   if (pokData.type2 === "") {
     errors.type2 = "enter a numeric value";
     maySubmit = "no";
   }
 
-  console.log('Validation errors');
+  console.log("Validation errors");
   console.log(errors);
-  
+
   errors.maySubmit = maySubmit;
 
   return errors;

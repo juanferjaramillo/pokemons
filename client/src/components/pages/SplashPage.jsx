@@ -8,6 +8,7 @@ function SplashPage() {
 
   useEffect(() => {
     dispatch(getAllPks());
+    //brings all pokemons from DB and 60 pokemons from API and store them in the state
   }, []);
 
   return (

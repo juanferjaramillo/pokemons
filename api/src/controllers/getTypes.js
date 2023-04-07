@@ -19,7 +19,6 @@ const getTypes = async (req, res) => {
       let types_pk = await axios.get("https://pokeapi.co/api/v2/type");
       types_pk = types_pk.data.results;
       //array of pokemon types
-      // types_pk.forEach(async (elem) => await Type.create(elem));
       await Type.bulkCreate(types_pk);
       //stores all types on database
       console.log(`getTypes from API`);

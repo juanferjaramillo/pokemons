@@ -1,5 +1,4 @@
-- Revisar la validacion del formulario y por que cuando reporta un error en los datos no deja guardar el pok luego que se corrigen y es neceario cambiar el ID.
-
+- try catch to all axios request
 
 URL images:
 http://images.clipartpanda.com/dinosaur-cartoon-Dinosaur_by_easterbonnie.png

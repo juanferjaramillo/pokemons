@@ -1,25 +1,32 @@
 import style from "./createform.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import validate from "./validation";
 import { postPokemon } from "../../redux/actions";
 
 function CreateForm() {
   const dispatch = useDispatch();
+  let IdsUsed = useSelector((state) => state.cardsOnGame);
+  IdsUsed = IdsUsed.map(pk => pk.id);
+  //IdsUsed is an array of ids used in store
+ const pokDataInit = {
+  id: "",
+  name: "",
+  image: "",
+  attack: "",
+  defense: "",
+  life: "",
+  speed: "",
+  height: "",
+  weight: "",
+  type1: "",
+  type2: "",
+};
 
-  const [pokData, setPokData] = useState({
-    id: "",
-    name: "",
-    image: "",
-    attack: "",
-    defense: "",
-    life: "",
-    speed: "",
-    height: "",
-    weight: "",
-    type1: "",
-    type2: "",
-  });
+  console.log(`CreateForm: IdsUsed`);
+  console.log(IdsUsed);
+
+  const [pokData, setPokData] = useState(pokDataInit);
 
   const [errors, setErrors] = useState({
     id: "enter string or numeric id greater than 1010",
@@ -44,7 +51,7 @@ function CreateForm() {
       //we feed the function with the state and the new event.targe.name, because the state takes some time to update.
       ...pokData,
       [evento.target.name]: evento.target.value,
-    });
+    },IdsUsed);
     setErrors(validar);
     //returns an object with errors {username: errors:}
   };
@@ -91,8 +98,6 @@ function CreateForm() {
       //   console.log('both types');
       //   tp = [Number(pokData.type1), Number(pokData.type2)];
       // }
-      console.log("createform pokData before number");
-      console.log(pokData);
       
       const newPok = {
         id: Number(pokData.id),
@@ -108,18 +113,15 @@ function CreateForm() {
         origin: "db",
       };
 
-      console.log("createform newPok");
-      console.log(newPok);
+      IdsUsed.push(newPok.id);
+      setPokData(pokDataInit);
+      
+      //includes the nuw pokemon to the control variable
 
       dispatch(postPokemon(newPok)); 
       //display a message confirming
     } else {
       //display an error message
-
-      console.log("createform pokData");
-      console.log(pokData);
-      console.log('createForm errors');
-      console.log(errors);
 
       alert("check the info!");
     }
@@ -172,7 +174,7 @@ function CreateForm() {
             name="image"
             type="text"
             placeholder="URL"
-            value={pokData.imageUrl}
+            value={pokData.image}
             onChange={handleInputChange}
           ></input>
           <p className={style.warning}>{errors.image}</p>

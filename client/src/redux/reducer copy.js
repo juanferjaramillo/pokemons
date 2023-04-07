@@ -10,6 +10,7 @@ const initialState = {
   orderByAttack: "none", // up, down
   filterByType: "none", //type
   filterByOrigin: "none", //Api or db
+  dbIds: [], //all ids in database
   cardsOnGame: [],
   //Cards brought from API
   cardsFiltered: [],
@@ -54,6 +55,7 @@ const reducer = (state = initialState, action) => {
         ...state,
         cardsOnGame: action.payload.myPoks,
         cardsFiltered: action.payload.myPoks,
+        
       };
 
     case FILTER_BY_TYPE:
