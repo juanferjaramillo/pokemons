@@ -6,9 +6,15 @@ import { postPokemon } from "../../redux/actions";
 
 function CreateForm() {
   const dispatch = useDispatch();
-  let IdsUsed = useSelector((state) => state.cardsOnGame);
-  IdsUsed = IdsUsed.map(pk => pk.id);
-  //IdsUsed is an array of ids used in store
+  const cog = useSelector((state) => state.cardsOnGame);
+  const idsUsed = cog.map(pk => pk.id);
+  //idsUsed is an array of ids already in use in store
+  const namesUsed = cog.map(pk => pk.name);
+  //namesUsed is an array of names already in use in store
+
+  console.log(`crateform: namesUsed`);
+  console.log(namesUsed);
+
  const pokDataInit = {
   id: "",
   name: "",
@@ -23,9 +29,7 @@ function CreateForm() {
   type2: "",
 };
 
-  console.log(`CreateForm: IdsUsed`);
-  console.log(IdsUsed);
-
+//--------------------------LOCAL STATE---------------------
   const [pokData, setPokData] = useState(pokDataInit);
 
   const [errors, setErrors] = useState({
@@ -38,9 +42,11 @@ function CreateForm() {
     speed: "",
     height: "",
     weight: "",
-    type1: "select one type",
-    type2: "select one type",
+    // type1: "select one type",
+    // type2: "select one type",
   });
+
+  //-------------------------- HADLES ---------------------
 
   const handleInputChange = (evento) => {
     setPokData({
@@ -51,7 +57,7 @@ function CreateForm() {
       //we feed the function with the state and the new event.targe.name, because the state takes some time to update.
       ...pokData,
       [evento.target.name]: evento.target.value,
-    },IdsUsed);
+    },idsUsed, namesUsed);
     setErrors(validar);
     //returns an object with errors {username: errors:}
   };
@@ -65,7 +71,7 @@ function CreateForm() {
       //we feed the function with the state and the new event.targe.name, because the state takes some time to update.
       ...pokData,
       [evento.target.name]: evento.target.value,
-    });
+    },idsUsed, namesUsed);
     setErrors(validar);
     //returns an object with errors {username: errors:}
   };
@@ -79,7 +85,7 @@ function CreateForm() {
       //we feed the function with the state and the new event.targe.name, because the state takes some time to update.
       ...pokData,
       [evento.target.name]: evento.target.value,
-    });
+    },idsUsed, namesUsed);
     setErrors(validar);
     //returns an object with errors {username: errors:}
   };
@@ -88,16 +94,6 @@ function CreateForm() {
     event.preventDefault();
 
     if (errors.maySubmit === "yes") {
-      //there is no error message on maySubmit state
-      // let tp = [];
-
-      // if (pokData.type2 === "") {
-      //   console.log('one type');
-      //   tp = [Number(pokData.type1)];
-      // } else {
-      //   console.log('both types');
-      //   tp = [Number(pokData.type1), Number(pokData.type2)];
-      // }
       
       const newPok = {
         id: Number(pokData.id),
@@ -110,13 +106,16 @@ function CreateForm() {
         height: Number(pokData.height) || 0,
         weight: Number(pokData.height) || 0,
         types: [Number(pokData.type1), Number(pokData.type2)],
+        //this is [0,0] if no types are selected
         origin: "db",
       };
 
-      IdsUsed.push(newPok.id);
-      setPokData(pokDataInit);
+      idsUsed.push(newPok.id);
+      namesUsed.push(newPok.name);
+      //includes the new pokemon in the already used ids and names list
       
-      //includes the nuw pokemon to the control variable
+      setPokData(pokDataInit);
+      //clears the form
 
       dispatch(postPokemon(newPok)); 
       //display a message confirming
@@ -126,6 +125,8 @@ function CreateForm() {
       alert("check the info!");
     }
   };
+
+//-------------------------- RENDER ---------------------
 
   return (
     <div className={style.divContainer}>
@@ -208,6 +209,19 @@ function CreateForm() {
               <p className={style.warning}>{errors.weight}</p>
             </div>
 
+            <span className={style.text}>Speed</span>
+            <div className={style.prop}>
+              <input
+                className={style.inputProperty}
+                name="speed"
+                type="text"
+                placeholder="speed"
+                value={pokData.speed}
+                onChange={handleInputChange}
+              ></input>
+              <p className={style.warning}>{errors.speed}</p>
+            </div>
+
             <span className={style.text}>Attack:</span>
             <div className={style.prop}>
               <input
@@ -245,19 +259,6 @@ function CreateForm() {
                 onChange={handleInputChange}
               ></input>
               <p className={style.warning}>{errors.life}</p>
-            </div>
-
-            <span className={style.text}>Speed</span>
-            <div className={style.prop}>
-              <input
-                className={style.inputProperty}
-                name="speed"
-                type="text"
-                placeholder="speed"
-                value={pokData.speed}
-                onChange={handleInputChange}
-              ></input>
-              <p className={style.warning}>{errors.speed}</p>
             </div>
 
             <span className={style.text}>Type 1:</span>
@@ -299,7 +300,7 @@ function CreateForm() {
                 <option value="19">unknown</option>
                 <option value="11">water</option>
               </select>
-              <p className={style.warning}>{errors.type1}</p>
+              {/* <p className={style.warning}>{errors.type1}</p> */}
             </div>
 
             <span className={style.text}>Type 2</span>
@@ -342,7 +343,7 @@ function CreateForm() {
                 <option value="19">unknown</option>
                 <option value="11">water</option>
               </select>
-            <p className={style.warning}>{errors.type2}</p>
+            {/* <p className={style.warning}>{errors.type2}</p> */}
             </div>
           </div>
             <br></br>

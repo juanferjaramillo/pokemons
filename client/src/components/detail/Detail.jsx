@@ -1,6 +1,7 @@
 import { useLocation, useParams } from "react-router-dom";
 import style from "./detail.module.css";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";  
 
 function Detail() {
   let t0 = "";
@@ -12,10 +13,14 @@ function Detail() {
   const { name, attack, defense, height, image, life, speed, weight, types } =
     myPok;
 
+    //------------------------------ RENDER ------------------------
   return (
     <div className={style.divContainer}>
       <div className={style.divDetails}>
         <div className={style.divTitle}>
+          <Link to='/pokemon'>
+          <div className={style.back}>◀ BACK | </div> 
+          </Link>
           <div className={style.divMyPokemon}>My Pokemon</div>
         </div>
 

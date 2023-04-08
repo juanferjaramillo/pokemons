@@ -13,31 +13,40 @@ const regexURL = /^(https?|ftp):\/\/[^\s/$.?#].[^\s]*$/i;
 const regexName = /^[A-Za-z]*[A-Za-z][A-Za-z0-9-. _]*$/i;
 const regexNumbers = /^\d+$/;
 
-const validate = (pokData, ids = []) => {
+const validate = (pokData, ids = [], names =[]) => {
   const errors = {};
   let maySubmit = "yes";
   //assume everything will be ok
 
-  if (ids.includes(Number(pokData.id))) {
-    errors.id = "this id already exists";
-    maySubmit = "no";
-  }
-
-  if (!regexNumbers.test(pokData.id)) {
+  if (!pokData.id || !regexNumbers.test(pokData.id)) {
+    //id should exist and it should be a number
     errors.id = "id should be a numeric value";
     maySubmit = "no";
   }
 
-  if (!pokData.id || Number(pokData.id) <= 1010) {
-    errors.id = "enter string or numeric id greater than 1010";
+  if (ids.includes(Number(pokData.id))) {
+    //id should not be repeated
+    errors.id = "this id already exists";
+    maySubmit = "no";
+  }  
+
+  if (Number(pokData.id) <= 1010) {
+    //id 
+    errors.id = "enter a numeric id greater than 1010";
     maySubmit = "no";
   }
 
-  // if (pokData.name === "") {
   if (!regexName.test(pokData.name)) {
     errors.name = "enter the pokemon name";
     maySubmit = "no";
   }
+
+  if (names.includes(pokData.name.toLowerCase())) {
+    //name should not be repeated
+    errors.name = "this name already exists";
+    maySubmit = "no";
+  } 
+
   if (!regexURL.test(pokData.image)) {
     errors.image = "enter the URL of the pokemon image";
     maySubmit = "no";
@@ -68,15 +77,15 @@ const validate = (pokData, ids = []) => {
     maySubmit = "no";
   }
 
-  if (pokData.type1 === "") {
-    errors.type1 = "enter a numeric value";
-    maySubmit = "no";
-  }
+  // if (pokData.type1 === "0") {
+  //   errors.type1 = "enter a numeric value";
+  //   maySubmit = "no";
+  // }
 
-  if (pokData.type2 === "") {
-    errors.type2 = "enter a numeric value";
-    maySubmit = "no";
-  }
+  // if (pokData.type2 === "0") {
+  //   errors.type2 = "enter a numeric value";
+  //   maySubmit = "no";
+  // }
 
   console.log("Validation errors");
   console.log(errors);

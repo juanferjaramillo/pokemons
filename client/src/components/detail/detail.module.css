@@ -19,7 +19,7 @@
     display: flex;
     justify-content: space-evenly;
     flex-direction: row;
-    width: 80%;
+    width: 100%;
 }
 
 .divDetail {
@@ -125,4 +125,9 @@
 .line {
     color: white;
     width: 70%;
+}
+
+.back {
+    color:white;
+    font-size: small;
 }
