@@ -51,12 +51,12 @@ function CreateForm() {
   const handleInputChange = (evento) => {
     setPokData({
       ...pokData,
-      [evento.target.name]: evento.target.value,
+      [evento.target.name]: evento.target.value.trim(),
     });
     const validar = validate({
       //we feed the function with the state and the new event.targe.name, because the state takes some time to update.
       ...pokData,
-      [evento.target.name]: evento.target.value,
+      [evento.target.name]: evento.target.value.trim(),
     },idsUsed, namesUsed);
     setErrors(validar);
     //returns an object with errors {username: errors:}

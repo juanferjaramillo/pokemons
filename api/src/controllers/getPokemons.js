@@ -84,6 +84,7 @@ const getPokemons = async (req, res) => {
     //------------------------------------- WITH NAME FROM DATABASE
     try {
       console.log(`search in database:`);
+      //returns an array of one pokemon with the name provided
       myPok = await Pokemon.findAll({
         where: { name: pokName },
         include: {
@@ -94,11 +95,27 @@ const getPokemons = async (req, res) => {
           },
         },
       });
-      console.log('myPok from db');
-      console.log(myPok);
+      console.log('myPok types from db');
+      // console.log(`myPok[0].types[0]`);
+      // console.log(myPok[0].types[0]);
+      // console.log(`myPok[0].types[0].name`);
+      // console.log(myPok[0].types[0].name);
+      // console.log(`myPok[0].types[1].name`);
+      // console.log(myPok[0].types[1].name);
+      // console.log(`myPok.length`);
+      // console.log(myPok.length);
+      // console.log(`myPok.types.length`);
+      // console.log(myPok[0].types.length);
 
+      if (myPok.length > 0) {
+        //found one pokemon with the given name
 
-      if (myPok.length === 1) {
+        if (myPok[0].types.length === 2) {myPok[0].types = [myPok[0].types[1].name, myPok[0].types[0].name ]}
+        //pokemon has two types
+        if (myPok[0].types.length === 1) {myPok[0].types = [myPok[0].types[0].name]}
+        //pokemon only has one type
+        if (myPok[0].types.length === 0) {myPok[0].types = []}
+        //pokemon has no types
       myPok =
       {
         id: myPok[0].id,
@@ -110,7 +127,8 @@ const getPokemons = async (req, res) => {
         speed: myPok[0].speed,
         height: myPok[0].height,
         weight: myPok[0].weight,
-        types: [myPok[0].types[0].name, myPok[0].types[1].name],
+        // types: [myPok[0].types[0].name, myPok[0].types[1].name],
+        types: myPok[0].types,
         origin: "db",
       }
 

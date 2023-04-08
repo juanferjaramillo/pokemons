@@ -1,4 +1,4 @@
-- try catch to all axios request
+- no encuentra de bd cuando el pok solo tiene un tipo
 
 URL images:
 http://images.clipartpanda.com/dinosaur-cartoon-Dinosaur_by_easterbonnie.png
