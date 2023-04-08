@@ -2,7 +2,7 @@ import { ADD_TO_BOARD, STORE_BOARD_PAGE } from "./actions";
 import { INCREASE_BOARD_PAGE, DECREASE_BOARD_PAGE } from "./actions";
 import { GET_ALL_PK, FILTER_BY_TYPE, FILTER_BY_ORIGIN } from "./actions";
 import { ORDER_BY_NAME, ORDER_BY_ATTACK } from "./actions";
-import { DISPLAY_ALL_PK, POST_PK, GET_TYPES } from "./actions";
+import { DISPLAY_ALL_PK, POST_PK } from "./actions";
 
 const initialState = {
   page: 0,

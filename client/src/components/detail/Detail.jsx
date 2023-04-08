@@ -1,7 +1,8 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import style from "./detail.module.css";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";  
+import { Link } from "react-router-dom";
+import BackPage from "../pages/BackPage";
 
 function Detail() {
   let t0 = "";
@@ -13,14 +14,20 @@ function Detail() {
   const { name, attack, defense, height, image, life, speed, weight, types } =
     myPok;
 
-    //------------------------------ RENDER ------------------------
+
+  //------------------------------ RENDER ------------------------
   return (
     <div className={style.divContainer}>
       <div className={style.divDetails}>
         <div className={style.divTitle}>
-          <Link to='/pokemon'>
+          {/* <Link to='/pokemon'>
           <div className={style.back}>◀ BACK | </div> 
-          </Link>
+          </Link> */}
+            <Link to="/board">
+          <button className={style.back}>
+            ◀ BACK |
+          </button>
+            </Link>
           <div className={style.divMyPokemon}>My Pokemon</div>
         </div>
 
@@ -30,9 +37,7 @@ function Detail() {
 
         <div className={style.divDetail}>
           <div className={style.divImg}>
-            <img 
-            className={style.image}
-            src={image} />
+            <img className={style.image} src={image} />
           </div>
           <div className={style.divPowers}>
             <div className={style.divNombre}>{name}</div>
@@ -47,11 +52,11 @@ function Detail() {
         </div>
 
         <div className={style.divSpec}>
-          {types[0] === undefined ? t0="": t0=types[0]}
-          {types[1] === undefined ? t1="": t1=` & ${types[1]}`}
+          {types[0] === undefined ? (t0 = "") : (t0 = types[0])}
+          {types[1] === undefined ? (t1 = "") : (t1 = ` & ${types[1]}`)}
 
           {/* <div className={style.divTypes}>{`${types[0]} ${types[1]}`}</div> */}
-          <div className={style.divTypes}>{t0+t1}</div>
+          <div className={style.divTypes}>{t0 + t1}</div>
           <div className={style.divWH}>{`height: ${height}`}</div>
           <div className={style.divWH}>{`weight: ${weight}`}</div>
         </div>

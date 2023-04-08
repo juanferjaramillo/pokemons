@@ -129,5 +129,8 @@
 
 .back {
     color:white;
+    background-color: black;
     font-size: small;
+    border-style: none;
+    cursor: pointer;
 }

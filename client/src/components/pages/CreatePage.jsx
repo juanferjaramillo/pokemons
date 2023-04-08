@@ -1,5 +1,4 @@
 import CreateForm from "../createFrom/CreateForm";
-import Detail from "../detail/Detail";
 import NavBar from "../navBar/NavBar";
 
 function CreatePage() {

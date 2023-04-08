@@ -5,9 +5,6 @@ const postPokemons = async (req, res) => {
   let myPok = req.body;
   const {types} = myPok;
   //types is an array [0,0] if no types were selected
-  
-  console.log(`postpokemons: types`);
-  console.log(types);
 
   //validate the info received for this pokemon to be created:
   if (
@@ -36,17 +33,10 @@ const postPokemons = async (req, res) => {
       weight: myPok.weight,
       origin: "db"
     }
-    //cleans the types array:
-    // if (types[0] === 0) {types[0] = ""; } 
-    // if (types[1] === 0) {types[1] = ""}
-    // }else if
     
     const newPok = await Pokemon.create(myPok);
     const pokType = await Type.findAll({ where: { id: types } });
     //find types on db that coincide with the types received
-
-    console.log(`postPokemon: pokType`);
-    console.log(pokType);
 
     await newPok.addType(pokType);
     // return res.status(200).send([pokType[0].dataValues.name, pokType[1].dataValues.name]);

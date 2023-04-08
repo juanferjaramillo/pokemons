@@ -77,16 +77,6 @@ const validate = (pokData, ids = [], names =[]) => {
     maySubmit = "no";
   }
 
-  // if (pokData.type1 === "0") {
-  //   errors.type1 = "enter a numeric value";
-  //   maySubmit = "no";
-  // }
-
-  // if (pokData.type2 === "0") {
-  //   errors.type2 = "enter a numeric value";
-  //   maySubmit = "no";
-  // }
-
   console.log("Validation errors");
   console.log(errors);
 

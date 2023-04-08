@@ -61,6 +61,7 @@ export const addToBoard = (pok) => {
 export const getAllPks = () => {
   //brings 60 pks to the state
   return async function (dispatch) {
+    try {
     let myPoks = await axios.get(`http://localhost:3001/pokemons/`);
     //request to return all pokemons from DB and 60 pokemons from API to store them in the state
     myPoks = myPoks.data;
@@ -70,16 +71,15 @@ export const getAllPks = () => {
       type: GET_ALL_PK,
       payload: { myPoks },
     });
+  }catch (error) {
+    console.log(`error: ${error.message}`);
+  }
   };
 };
 
 export const postPokemon = (pok) => {
-  console.log(`actions en dispatch: `);
-
-  console.log(`actions: pok`);
-  console.log(pok);
-
   return async function (dispatch) {
+    console.log(`actions:  dispatching `);
     try {
       let typ = (await axios.post("http://localhost:3001/pokemons", pok)).data;
       //returns an array with the name strings of the pokemon types
