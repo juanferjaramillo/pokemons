@@ -1,9 +1,12 @@
+console.log('running db.js');
+
 require("dotenv").config();
 const { Sequelize, HasOne } = require("sequelize");
 const fs = require("fs");
 const path = require("path");
 const { DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 const DB_PORT = 5432;
+
 
 //database conection:
 const sequelize = new Sequelize(
@@ -27,7 +30,7 @@ fs.readdirSync(path.join(__dirname, "/models"))
     modelDefiners.push(require(path.join(__dirname, "/models", file)));
   });
   
-// Injectamos la conexion (sequelize) a todos los modelos
+// Injectamos la conexion (sequelize) a todos los modelos: crea la instancia de cada modelo y lo incluye en sequelize.models
 modelDefiners.forEach((model) => model(sequelize));
 // Capitalizamos los nombres de los modelos ie: product => Product
 let entries = Object.entries(sequelize.models);
@@ -42,8 +45,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { Type, Pokemon } = sequelize.models;
 Type.belongsToMany(Pokemon, { through: "PokeType" });
 Pokemon.belongsToMany(Type, { through: "PokeType" });
-
-//the many-to-many relation creates a new table called PokeType
+//Creates the intermediate table with the specified table name:
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

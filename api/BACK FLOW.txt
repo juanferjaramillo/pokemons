@@ -1,0 +1,26 @@
+
+index.js: -> entry point
+Ejecuta los app.js (middlewares)
+ejecuta db.js (conex a db y creacion de instancias de modelos)
+Crea la conexion con la bd en el puerto especificado, ejecutando el metodo sync de la conexion definida en db.js, con la opcion den ater o force. (retorna una promesa).
+Cuando la conexión a la bd es successful, levanta el server de backend (creado en app.js).
+
+app.js:
+Crea el server como instancia de express
+Define los middlewares (cors, morgan, json, '/')
+Ejecuta las rutas definidas en routes.js
+
+db.js:
+Define la conexión a la bd, en la direccion y el puerto y con las credenciales especificadas, asi como con la opción de logging.
+Ejecuta las funciones creadoras de los modelos para crear las instancias que se guardan en sequelize.models, con la primera letra en mayusculas
+Define la relación de las entidades. En many-to-many, crea la tabla intermedia con el nombre que se le especifica.
+
+modelos:
+Funciones creadoras de modelos, que ejecutan sequelize.define y cuentan con el nombre del modelo, las propiedades y sus caracteristicas.
+La tabla en la bd se llamara el plural del modelo por defecto (se puede configurar diferente)
+
+routes.js:
+crea una instancia de Router() y define rutas para get, post, delete, put, especificando el path y el controlador que lo atiende.
+
+controllers:
+Funciones que atienden cada ruta, hacen las peticiones externas y retornan la respuesta al frontend.
