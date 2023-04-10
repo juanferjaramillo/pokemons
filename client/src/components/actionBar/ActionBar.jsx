@@ -73,18 +73,22 @@ function ActionBar() {
   // const handleOrderByName = (ON) => {
   const handleOrderByName = () => {
     if (OBN === "none" || OBN === "asc") {
-      setOBN("des", dispatch(orderByName(OBN)));
+      setOBN("des");
+       dispatch(orderByName(OBN));
     } else {
-      setOBN("asc", dispatch(orderByName(OBN)));
+      setOBN("asc");
+       dispatch(orderByName(OBN));
     }
     setOBA("none");
   };
 
   const handleOrderByAttack = () => {
     if (OBA === "none" || OBA === "asc") {
-      setOBA("des", dispatch(orderByAttack(OBA)));
+      setOBA("des"); 
+      dispatch(orderByAttack(OBA));
     } else {
-      setOBA("asc", dispatch(orderByAttack(OBA)));
+      setOBA("asc");
+      dispatch(orderByAttack(OBA));
     }
     setOBN("none");
   };

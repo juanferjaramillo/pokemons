@@ -1,0 +1,1 @@
+Bring the local state of filters and orders of ActionBar to Redux, to keep the satae of the selectors and buttons
