@@ -32,7 +32,7 @@ function Card(props) {
         {/* We also set the --random-color custom property to the random color value using the style attribute on the div element.*/}
         {/*Note that we need to use string interpolation to set the --random-color property because it starts with a dash. We also need to pass the styles.randomColor class name to the className attribute of the div element to apply the CSS styles from the styles.module.css file. */}
 
-        <Link to={`/detail/${props.id}`}>
+        <Link to={`/detail/${props.name}`}>
           <img
             className={style.imgPokemon}
             src={props.image}

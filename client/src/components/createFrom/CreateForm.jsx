@@ -16,7 +16,7 @@ function CreateForm() {
   console.log(namesUsed);
 
  const pokDataInit = {
-  id: "",
+  //id: "",
   name: "",
   image: "",
   attack: "",
@@ -33,7 +33,7 @@ function CreateForm() {
   const [pokData, setPokData] = useState(pokDataInit);
 
   const [errors, setErrors] = useState({
-    id: "enter string or numeric id greater than 1010",
+    //id: "enter string or numeric id greater than 1010",
     name: "enter the pokemon name",
     image: "enter the URL of the pokemon image",
     attack: "enter a numeric value",
@@ -96,7 +96,7 @@ function CreateForm() {
     if (errors.maySubmit === "yes") {
       
       const newPok = {
-        id: Number(pokData.id),
+        //id: Number(pokData.id),
         name: pokData.name.toLowerCase(),
         image: pokData.image,
         attack: Number(pokData.attack),
@@ -110,7 +110,7 @@ function CreateForm() {
         origin: "db",
       };
 
-      idsUsed.push(newPok.id);
+      //idsUsed.push(newPok.id);
       namesUsed.push(newPok.name);
       //includes the new pokemon in the already used ids and names list
       
@@ -145,7 +145,7 @@ function CreateForm() {
           type="submit"
           onSubmit={(event) => handleSubmitCreate(event)}
         >
-          <span className={style.text}>id: </span>
+          {/* <span className={style.text}>id: </span>
           <input
             className={style.inputForm}
             name="id"
@@ -154,7 +154,7 @@ function CreateForm() {
             value={pokData.id}
             onChange={handleInputChange}
           ></input>
-          <p className={style.warning}>{errors.id}</p>
+          <p className={style.warning}>{errors.id}</p> */}
 
           <br></br>
           <span className={style.text}>Name: </span>

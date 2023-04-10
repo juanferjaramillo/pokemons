@@ -92,8 +92,8 @@ const reducer = (state = initialState, action) => {
       console.log("ordering by attack");
       const arrOBA = [...state.cardsFiltered];
       action.payload === "des"
-        ? arrOBA.sort((a, b) => a.name.localeCompare(b.name))
-        : arrOBA.sort((a, b) => b.name.localeCompare(a.name));
+        ? arrOBA.sort((a, b) => a.attack - b.attack) 
+        : arrOBA.sort((a, b) => b.attack - a.attack);
       return {
         ...state,
         cardsFiltered: arrOBA,

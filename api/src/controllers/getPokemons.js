@@ -77,6 +77,7 @@ const getPokemons = async (req, res) => {
       return res.status(200).json(myPoks);
       //myPoks is an array of pokemones
     } catch (error) {
+      //alert(`sorry, something is not right, please try again 🤨`);
       return res.status(404).json(`getPokemons: ${error.message}`);
     }
     //
@@ -162,6 +163,7 @@ const getPokemons = async (req, res) => {
       //finally, return the pokemon
       return res.status(200).json(myPok);
     } catch (error) {
+      //alert(`mmm, somehow this is not working 😌, please try again`)
       return res.status(404).json(error.message);
     }
   }

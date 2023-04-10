@@ -19,7 +19,7 @@ function App() {
         <Route  exact path={'/pokemon'} element={<BoardPage />}> </Route>
         <Route exact path={"/pokemon/create"} element={<CreatePage />}></Route>
         <Route exact path={"/about"} element={<AboutPage />}></Route>
-        <Route exact path={"/detail/:id"} element={<DetailPage />}></Route>
+        <Route exact path={"/detail/:name"} element={<DetailPage />}></Route>
         <Route exact path={"/board"} element={<BackPage />}></Route>
       </Routes>
     </div>

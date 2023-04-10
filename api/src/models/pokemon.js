@@ -5,9 +5,11 @@ const pokemonmodel = (sequelize) => {
   // defino el modelo
   sequelize.define("pokemon", {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.UUID,
       primaryKey: true,
-      autoIncrement: false,
+      //autoIncrement: false,
+      defaultValue: DataTypes.UUIDV4,
+
     },
     name: {
       type: DataTypes.STRING,

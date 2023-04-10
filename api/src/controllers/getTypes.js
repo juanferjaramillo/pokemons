@@ -30,6 +30,7 @@ const getTypes = async (req, res) => {
       return res.status(200).json(types_pk);
     }
   } catch (error) {
+    alert('mmm, the app could not start correctly, please check your internet connection and reload the page 😳')
     return res.status(400).json({ error_getTypes: error.message });
   }
 };

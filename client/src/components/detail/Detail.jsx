@@ -7,13 +7,30 @@ import BackPage from "../pages/BackPage";
 function Detail() {
   let t0 = "";
   let t1 = "";
-  const { id } = useParams();
-  const myPok = useSelector((state) => state.cardsFiltered).filter(
-    (pk) => Number(pk.id) === Number(id)
-  )[0];
-  const { name, attack, defense, height, image, life, speed, weight, types } =
+  const param = useParams();
+  
+  const { name } = useParams();  //
+  
+  console.log(`param`);
+  console.log(param);
+
+  console.log(`details: name`);
+  console.log(name);
+
+  let myPok = useSelector((state) => state.cardsFiltered)
+  
+  console.log(`details: myPok`);
+  console.log(myPok);
+
+  myPok = myPok.filter((pk) => pk.name === name)[0];
+
+    console.log('detail: myPok');
+    console.log(myPok);
+
+  let { id, attack, defense, height, image, life, speed, weight, types } =
     myPok;
 
+    id = id.toString().slice(-4);
 
   //------------------------------ RENDER ------------------------
   return (
