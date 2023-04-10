@@ -115,6 +115,7 @@ function CreateForm() {
       //includes the new pokemon in the already used ids and names list
       
       setPokData(pokDataInit);
+      setErrors(validate(pokDataInit,idsUsed, namesUsed));
       //clears the form
 
       dispatch(postPokemon(newPok)); 
@@ -122,7 +123,7 @@ function CreateForm() {
     } else {
       //display an error message
 
-      alert("check the info!");
+      alert("Please check all the info");
     }
   };
 
