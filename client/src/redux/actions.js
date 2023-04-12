@@ -53,29 +53,34 @@ export const addToBoard = (pok) => {
         payload: myPok,
       });
     } catch (error) {
-      alert(`pokemon ${pok} was not found 🤨`)
+      alert(`❗️ pokemon ${pok} was not found 🤨`);
       console.log(`error: ${error.message}`);
     }
   };
 };
 
 export const getAllPks = () => {
-  //brings 60 pks to the state
+  //brings pks to the state
   return async function (dispatch) {
     try {
-    let myPoks = await axios.get(`http://localhost:3001/pokemons/`);
-    //request to return all pokemons from DB and 60 pokemons from API to store them in the state
-    myPoks = myPoks.data;
-    await axios.get("http://localhost:3001/types");
-
-    return dispatch({
-      type: GET_ALL_PK,
-      payload: { myPoks },
-    });
-  }catch (error) {
-    alert('Something went wrong while connecting to the internet 🤨, try reloading the page')
-    console.log(`error: ${error.message}`);
-  }
+      console.log('actions: about to get types:');
+      await axios.get("http://localhost:3001/types");
+      
+      console.log('actions: about to get poks:');
+      let myPoks = await axios.get(`http://localhost:3001/pokemons/`);
+      console.log('actions: did I get poks?');
+      //request to return all pokemons from DB and some pokemons from API to store them in the state
+      myPoks = myPoks.data;
+      return dispatch({
+        type: GET_ALL_PK,
+        payload: { myPoks },
+      });
+    } catch (error) {
+      alert(
+        "❌ Something went wrong while connecting to the internet 🤨, try reloading the page"
+      );
+      console.log(`error: ${error.message}`);
+    }
   };
 };
 
@@ -83,7 +88,9 @@ export const postPokemon = (pok) => {
   return async function (dispatch) {
     console.log(`actions:  dispatching `);
     try {
-      let {pokType,id} = (await axios.post("http://localhost:3001/pokemons", pok)).data;
+      let { pokType, id } = (
+        await axios.post("http://localhost:3001/pokemons", pok)
+      ).data;
       //returns an array with the name strings of the pokemon types
 
       if (pokType.length === 2) {
@@ -103,14 +110,14 @@ export const postPokemon = (pok) => {
       console.log(pok);
       console.log(`actions: id`);
       console.log(id);
-      
-      alert("pokemon created!");
+
+      alert("✅ pokemon created!");
       return dispatch({
         type: POST_PK,
         payload: pok,
       });
     } catch (error) {
-      alert('mmm, your pokemon could not be created 😌, please try again')
+      alert("❌ mmm, your pokemon could not be created 😌, please try again");
       console.log(`actions: ${error.message}`);
     }
   };

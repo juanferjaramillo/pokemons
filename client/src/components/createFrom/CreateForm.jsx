@@ -123,7 +123,7 @@ function CreateForm() {
     } else {
       //display an error message
 
-      alert("Please check all the info");
+      alert("❗️Please check all the info");
     }
   };
 

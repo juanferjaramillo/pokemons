@@ -1,12 +1,25 @@
 import { Link } from "react-router-dom";
 import style from "./navBar.module.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { orderByName, filterTypeCards } from "../../redux/actions";
 
 function NavBar() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleCrearClick = () => {
     navigate(`/pokemon/create`);
+  };
+
+  const handleHomeClick = () => {
+    dispatch(orderByName("none"));
+    dispatch(filterTypeCards("none"));
+    navigate("/pokemon");
+  };
+
+  const handleAboutClick = () => {
+    navigate("/about");
   };
 
   return (
@@ -20,13 +33,17 @@ function NavBar() {
       </div>
 
       <div className={style.divMenu}>
-        <Link to="/pokemon">
-          <span>Home</span>
-        </Link>
+        {/* <Link to="/pokemon"> */}
+        <span className={style.homeAbout} onClick={handleHomeClick}>
+          Home
+        </span>
+        {/* </Link> */}
 
-        <Link to="/about">
-          <span>About</span>
-        </Link>
+        {/* <Link to="/about"> */}
+        <span className={style.homeAbout} onClick={handleAboutClick}>
+          About
+        </span>
+        {/* </Link> */}
       </div>
 
       <div className={style.divCrear}>

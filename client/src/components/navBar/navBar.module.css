@@ -44,3 +44,8 @@
     margin-right: 10%;
     cursor: pointer;
 }
+
+.homeAbout {
+    cursor:pointer;
+    text-decoration: underline;
+}

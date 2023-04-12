@@ -26,7 +26,7 @@ Hace dispatch de increaseBoardPage() y decreaseBoardPage() para modificar la pag
 Este cambio del state genera un re-renderizado de <Board />
 
 <ActionBar />
-Filtros: hace dispatch de filterTypeCards y filerOriginCards con el event.taget.value que hacen filter del cardsOnGame y vuelven a la pagina 1 => re-renderiza <Board />
+Filtros: hace dispatch de filterTypeCards y filerOriginCards con el event.taget.value que hacen filter del cardsOnGame y lo guarda en cardsFiltered y vuelven a la pagina 1 => re-renderiza <Board />
 Orden: hace dispatch de orderByName y orderByAttack con 'des' o 'asc' que hace un sort con los contenidos de cardsFiltered y vuelve a la pagina 1 => re-renderiza <Board />
 
 <NavBar />

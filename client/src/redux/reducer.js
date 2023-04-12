@@ -1,4 +1,4 @@
-import { ADD_TO_BOARD, STORE_BOARD_PAGE } from "./actions";
+import { ADD_TO_BOARD, STORE_BOARD_PAGE, orderByAttack } from "./actions";
 import { INCREASE_BOARD_PAGE, DECREASE_BOARD_PAGE } from "./actions";
 import { GET_ALL_PK, FILTER_BY_TYPE, FILTER_BY_ORIGIN } from "./actions";
 import { ORDER_BY_NAME, ORDER_BY_ATTACK } from "./actions";
@@ -64,6 +64,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         page: 1,
         cardsFiltered: arrFT,
+        filterByType: action.payload,
+        filterByOrigin: "none",
+        orderByAttack: "none",
+        orderByName: "none"  
       };
 
     case FILTER_BY_ORIGIN:
@@ -74,6 +78,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         cardsFiltered: arrFO,
         page: 1,
+        filterByOrigin: action.payload,
+        filterByType: "none",
+        orderByAttack: "none",
+        orderByName: "none"
       };
 
     case ORDER_BY_NAME:
@@ -86,6 +94,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         cardsFiltered: arrOBN,
         page: 1,
+        orderByName: action.payload,
+        orderByAttack: "none",
       };
 
     case ORDER_BY_ATTACK:
@@ -98,6 +108,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         cardsFiltered: arrOBA,
         page: 1,
+        orderByAttack: action.payload,
+        orderByName: "none"
       };
 
     case DISPLAY_ALL_PK:
